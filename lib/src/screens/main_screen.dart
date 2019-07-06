@@ -4,6 +4,7 @@ import '../pages/order_page.dart';
 import '../pages/favorite_page.dart';
 import '../pages/profile_page.dart';
 
+
 class MainScreen extends StatefulWidget {
   @override
   _MainScreenState createState() => _MainScreenState();
@@ -16,6 +17,7 @@ class _MainScreenState extends State<MainScreen> {
   HomePage homePage;
   OrderPage orderPage;
   FavoritePage favoritePage;
+  //LocationPage locationPage;
   ProfilePage profilePage;
 
   List<Widget> pages;
