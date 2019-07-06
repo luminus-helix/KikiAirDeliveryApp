@@ -57,7 +57,7 @@ class _HomePageState extends State<HomePage>{
           ),
           SizedBox(height: 20.0),
           Column(
-            children: _foods.map(_buildFoodItems).toList(),
+            children: _foods.map(_buildFoodItems).toList(), //converts the data from foods to a list
           ),
         ],
       ),
@@ -74,8 +74,9 @@ class _HomePageState extends State<HomePage>{
           category: food.category,
           discount: food.discount,
           price: food.price,
-          ratings: food.ratings,
+          ratings: food.ratings, //makes sure to call them inside the widget so can be used later
         ),
+        
       );
   }
 

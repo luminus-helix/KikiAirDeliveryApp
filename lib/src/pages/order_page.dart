@@ -1,13 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:food_app_flutter_zone/src/pages/sigin_page.dart';
+import 'package:food_app_flutter_zone/src/widgets/bought_foods.dart';
 import '../widgets/order_card.dart';
+import 'package:food_app_flutter_zone/src/data/food_data.dart';
+import 'package:food_app_flutter_zone/src/models/food_model.dart';
 
 class OrderPage extends StatefulWidget {
   @override
   _OrderPageState createState() => _OrderPageState();
 }
 
+class OrderTotal extends StatefulWidget {
+  final String id;
+  final String name;
+  final String imagePath;
+  final String category;
+  final double price;
+  final double discount;
+  final double ratings;
+
+  OrderTotal(
+      {this.id,
+      this.name,
+      this.imagePath,
+      this.category,
+      this.price,
+      this.discount,
+      this.ratings});
+
+  @override
+  _OrderPageState createState() => _OrderPageState();
+}
+
 class _OrderPageState extends State<OrderPage> {
+  List<Food> _foods = foods;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,15 +52,25 @@ class _OrderPageState extends State<OrderPage> {
       body: ListView(
         padding: EdgeInsets.symmetric(horizontal: 10.0),
         scrollDirection: Axis.vertical,
+
         children: <Widget>[
-          OrderCard(),
-          OrderCard(),
-        ],
+
+        Column(
+        children: //<Widget>[
+          //OrderCard(),
+          //OrderCard(),
+          _foods.map(_BuildOrderItems).toList(), 
+
+        //],
+      ),
+      //scrollDirection: Axis.vertical,
+
+        ]
       ),
       bottomNavigationBar: _buildTotalContainer(),
+
     );
   }
-
   Widget _buildTotalContainer() {
     return Container(
       height: 220.0,
@@ -48,14 +85,15 @@ class _OrderPageState extends State<OrderPage> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Text(
-                "Subtotal",
+                "Subtotal", //subtotal
                 style: TextStyle(
                     color: Color(0xFF9BA7C6),
                     fontSize: 16.0,
                     fontWeight: FontWeight.bold),
               ),
               Text(
-                "23.0",
+                ordervalue.toString(),
+                //"23.0",
                 style: TextStyle(
                     color: Color(0xFF6C6D6D),
                     fontSize: 16.0,
@@ -71,7 +109,7 @@ class _OrderPageState extends State<OrderPage> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Text(
-                "Discount",
+                "Discount", //add discount
                 style: TextStyle(
                     color: Color(0xFF9BA7C6),
                     fontSize: 16.0,
@@ -170,4 +208,20 @@ class _OrderPageState extends State<OrderPage> {
       ),
     );
   }
+  Widget _BuildOrderItems(Food food){
+    return Container(
+        margin: EdgeInsets.only(bottom: 20.0),
+        child: OrderCard(
+          id: food.id,
+          name: food.name,
+          imagePath: food.imagePath,
+          category: food.category,
+          discount: food.discount,
+          price: food.price,
+          ratings: food.ratings, //makes sure to call them inside the widget so can be used later
+        ),
+        
+      );
+  }
+
 }

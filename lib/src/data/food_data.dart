@@ -3,7 +3,7 @@ import '../models/food_model.dart';
 final foods = [
   Food(
     id: "1",
-    name: "Hot Coffee",
+    name: "Hot CLIUGoffee",
     imagePath: "assets/images/breakfast.jpeg",
     category: "1",
     price: 22.0,
@@ -20,3 +20,4 @@ final foods = [
     ratings: 69.0,
   ),
 ];
+

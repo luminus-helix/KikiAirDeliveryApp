@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_app_flutter_zone/src/widgets/order_card.dart';
 
 class BoughtFood extends StatefulWidget {
   final String id;
@@ -21,7 +22,7 @@ class BoughtFood extends StatefulWidget {
   @override
   _BoughtFoodState createState() => _BoughtFoodState();
 }
-
+double ordervalue = 20.0;
 class _BoughtFoodState extends State<BoughtFood> {
   var cardText = TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold);
 
@@ -47,7 +48,7 @@ class _BoughtFoodState extends State<BoughtFood> {
             left: 0.0,
             bottom: 0.0,
             width: 340.0,
-            height: 60.0,
+            height:70.0,
             child: Container(
               decoration: BoxDecoration(
                   gradient: LinearGradient(
@@ -75,7 +76,7 @@ class _BoughtFoodState extends State<BoughtFood> {
                     ),
                     Row(
                       children: <Widget>[
-                        Icon(
+                        /*Icon(
                           Icons.star,
                           color: Theme.of(context).primaryColor,
                           size: 16.0,
@@ -102,29 +103,48 @@ class _BoughtFoodState extends State<BoughtFood> {
                         ),
                         SizedBox(
                           width: 10.0,
-                        ),
+                        ),*/
                         Text(
-                          "(" + widget.ratings.toString() + " Reviews)",
-                          style: TextStyle(color: Colors.grey),
+                          //"$" + widget.ratings.toString() + " Reviews)", //concatenate
+                         widget.price.toString(),//concatenate a dollar sign here
+                    
+                          style: TextStyle(color: Colors.white,
+                          fontSize: 18.0),
+
                         ),
                       ],
                     ),
                   ],
                 ),
                 Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: <Widget>[
-                    Text(
-                      widget.price.toString(),
-                      style: TextStyle(
-                          fontSize: 18.0,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.orangeAccent),
-                    ),
-                    Text("Min order",
-                        style: TextStyle(color: Colors.grey))
-                  ],
-                ),
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: <Widget>[
+                      
+                      GestureDetector(
+                        onTap: (){
+                          //
+                    //Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (BuildContext context) => OrderPage()));
+                          ordervalue = ordervalue + widget.price; //should be the cost of the item
+                          },
+                          child: Icon(
+                            Icons.add,
+                            color: Colors.white,
+                            //color: Theme.of(context).primaryColor,
+                            size: 30.0,
+                          ),
+                      /*Text(
+                        widget.price.toString(),
+                        style: TextStyle(
+                            fontSize: 18.0,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.orangeAccent),
+                      ),
+                      Text("Min order",
+                          style: TextStyle(color: Colors.grey))*/
+                      ),
+                    ],
+                  ),
+              
               ],
             ),
           ),
