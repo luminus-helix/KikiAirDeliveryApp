@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food_app_flutter_zone/src/widgets/order_card.dart';
+//import 'package:food_app_flutter_zone/src/widgets/order_card.dart';
 
 class BoughtFood extends StatefulWidget {
   final String id;

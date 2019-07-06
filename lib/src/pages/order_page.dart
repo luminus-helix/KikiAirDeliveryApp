@@ -4,6 +4,8 @@ import 'package:food_app_flutter_zone/src/widgets/bought_foods.dart';
 import '../widgets/order_card.dart';
 import 'package:food_app_flutter_zone/src/data/food_data.dart';
 import 'package:food_app_flutter_zone/src/models/food_model.dart';
+//import 'package: package_info/package_info.dart';
+
 
 class OrderPage extends StatefulWidget {
   @override
@@ -59,7 +61,7 @@ class _OrderPageState extends State<OrderPage> {
         children: //<Widget>[
           //OrderCard(),
           //OrderCard(),
-          _foods.map(_BuildOrderItems).toList(), 
+          _foods.map(_buildorderitems).toList(), 
 
         //],
       ),
@@ -208,7 +210,7 @@ class _OrderPageState extends State<OrderPage> {
       ),
     );
   }
-  Widget _BuildOrderItems(Food food){
+  Widget _buildorderitems(Food food){
     return Container(
         margin: EdgeInsets.only(bottom: 20.0),
         child: OrderCard(
