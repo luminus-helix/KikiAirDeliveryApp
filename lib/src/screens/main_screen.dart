@@ -3,7 +3,8 @@ import '../pages/home_page.dart';
 import '../pages/order_page.dart';
 import '../pages/favorite_page.dart';
 import '../pages/profile_page.dart';
-
+import '../pages/payment_page.dart';
+import '../pages/checkout_page.dart';
 
 class MainScreen extends StatefulWidget {
   @override
@@ -18,7 +19,9 @@ class _MainScreenState extends State<MainScreen> {
   OrderPage orderPage;
   FavoritePage favoritePage;
   //LocationPage locationPage;
-  ProfilePage profilePage;
+  CheckoutPage checkoutPage;
+  //ProfilePage profilePage;
+  PaymentPage paymentPage;
 
   List<Widget> pages;
   Widget currentPage;
@@ -27,9 +30,11 @@ class _MainScreenState extends State<MainScreen> {
   void initState() {
     homePage = HomePage();
     orderPage = OrderPage();
-    favoritePage = FavoritePage();
-    profilePage = ProfilePage();
-    pages = [homePage, orderPage, favoritePage, profilePage];
+    //favoritePage = FavoritePage();
+    paymentPage =PaymentPage();
+    checkoutPage = CheckoutPage();
+    //profilePage = ProfilePage();
+    pages = [homePage, orderPage, paymentPage, checkoutPage];
 
     currentPage = homePage;
     super.initState();

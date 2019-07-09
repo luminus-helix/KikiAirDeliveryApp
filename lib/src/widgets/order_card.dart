@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:food_app_flutter_zone/src/data/order_data.dart';
+import 'package:food_app_flutter_zone/src/pages/order_page.dart';
 
 class OrderCard extends StatefulWidget {
   final String id;
@@ -21,12 +23,38 @@ class OrderCard extends StatefulWidget {
   @override
   _OrderCardState createState() => _OrderCardState();
 }
+//double ordervalue = 0.0;
 
-int quantity = 0;
+int quantity =  0;
 
 class _OrderCardState extends State<OrderCard> {
-  @override
+  dynamic counter = '';
+
+  
+  void addprice(){
+    setState((){
+      //widget.price++;
+      //ordervalue = ordervalue + widget.price;
+
+      //counter = quantity.toString();
+    });
+  } 
+  void addprice2(){
+    setState(() {
+    ordervalue = ordervalue + widget.price;
+
+    });
+  }
+
+  @override//int
   Widget build(BuildContext context) {
+  //int quantity =   0;
+
+  if(widget.id == ''){
+  return new Container();
+  }
+  else{
+  
     return Card(
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
@@ -47,11 +75,20 @@ class _OrderCardState extends State<OrderCard> {
                 ),
                 child: Column(
                   children: <Widget>[
-                    InkWell(
-                        onTap: () {},
+                    GestureDetector(
+                      //InkWell(
+                        onTap: () {
+                          addprice();
+                          addprice2();
+                        },
                         child: Icon(Icons.keyboard_arrow_up,
                             color: Color(0xFFD3D3D3))),
+
+
+                    
+
                     Text(
+                      //counter,
                       quantity.toString(),
                       style: TextStyle(fontSize: 18.0, color: Colors.grey),
                     ),
@@ -86,6 +123,7 @@ class _OrderCardState extends State<OrderCard> {
               width: 20.0,
             ),
             Column(
+              
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -95,8 +133,9 @@ class _OrderCardState extends State<OrderCard> {
                 ),
                 SizedBox(height: 5.0),
                 Text(
+                  
                   //"\u01FE 3.0",
-                  "blank", 
+                  ordervalue.toString(), 
                   style: TextStyle(
                       fontSize: 16.0,
                       color: Colors.orangeAccent,
@@ -149,6 +188,6 @@ class _OrderCardState extends State<OrderCard> {
           ],
         ),
       ),
-    );
+    );}
   }
 }

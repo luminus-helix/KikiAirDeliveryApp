@@ -5,13 +5,18 @@ import '../widgets/order_card.dart';
 import 'package:food_app_flutter_zone/src/data/food_data.dart';
 import 'package:food_app_flutter_zone/src/models/food_model.dart';
 //import 'package: package_info/package_info.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'package:food_app_flutter_zone/src/data/order_data.dart';
+import '../models/food_model.dart';
 
-
+//import 'package:cloud_firestore/cloud_firestore.dart';
+final databaseReference = FirebaseDatabase.instance.reference();
 class OrderPage extends StatefulWidget {
   @override
   _OrderPageState createState() => _OrderPageState();
 }
-
+  double ordervalue = 0.0;
+int quantity = 0;
 class OrderTotal extends StatefulWidget {
   final String id;
   final String name;
@@ -35,7 +40,8 @@ class OrderTotal extends StatefulWidget {
 }
 
 class _OrderPageState extends State<OrderPage> {
-  List<Food> _foods = foods;
+
+  List<Food> _currentOrder = currentOrder;
 
   @override
   Widget build(BuildContext context) {
@@ -51,20 +57,49 @@ class _OrderPageState extends State<OrderPage> {
         elevation: 0.0,
         centerTitle: true,
       ),
+      /*body: ListView.builder(
+        itemCount: _currentOrder.length,
+        itemBuilder: (context, int index){
+          return new Dismissible(
+            key: new Key((_currentOrder[index]).toString()),
+            onDismissed: (direction){
+              _currentOrder.removeAt(index);
+            },
+            child: <Widget>[
+             _currentOrder.map(_buildorderitems).toList()]
+          ); 
+        }
+      ,)*/
       body: ListView(
         padding: EdgeInsets.symmetric(horizontal: 10.0),
         scrollDirection: Axis.vertical,
 
         children: <Widget>[
-
+        //onDismissed()
         Column(
         children: //<Widget>[
           //OrderCard(),
           //OrderCard(),
-          _foods.map(_buildorderitems).toList(), 
-
+          _currentOrder.map(_buildorderitems).toList(), 
+          
+          //_buildOrderSummary(),
         //],
       ),
+      Container(
+      height: 200.0,
+      padding: EdgeInsets.only(
+        left: 10.0,
+        right: 10.0,
+      ),
+      width: 200,
+          //height: 100,
+          // red box
+          child: Text( '',
+            //ordersummary,
+            overflow: TextOverflow.clip,
+            softWrap: true,
+          ),
+    )
       //scrollDirection: Axis.vertical,
 
         ]
@@ -73,8 +108,28 @@ class _OrderPageState extends State<OrderPage> {
 
     );
   }
-  Widget _buildTotalContainer() {
+  /*Widget _buildOrderSummary(){
     return Container(
+      height: 200.0,
+      padding: EdgeInsets.only(
+        left: 10.0,
+        right: 10.0,
+      ),
+      width: 200,
+          //height: 100,
+          // red box
+          child: Text(
+            ordersummary,
+            overflow: TextOverflow.clip,
+            softWrap: true,
+          ),
+    );
+  }*/
+  Widget _buildTotalContainer() {
+    return 
+    
+    
+    Container(
       height: 220.0,
       padding: EdgeInsets.only(
         left: 10.0,
@@ -111,14 +166,14 @@ class _OrderPageState extends State<OrderPage> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Text(
-                "Discount", //add discount
+                "Order Summary", //add discount
                 style: TextStyle(
                     color: Color(0xFF9BA7C6),
                     fontSize: 16.0,
                     fontWeight: FontWeight.bold),
               ),
               Text(
-                "10.0",
+                '',
                 style: TextStyle(
                     color: Color(0xFF6C6D6D),
                     fontSize: 16.0,
@@ -170,7 +225,7 @@ class _OrderPageState extends State<OrderPage> {
                     fontWeight: FontWeight.bold),
               ),
               Text(
-                "26.5",
+                (ordervalue*.5).toString(),
                 style: TextStyle(
                     color: Color(0xFF6C6D6D),
                     fontSize: 16.0,
@@ -183,6 +238,11 @@ class _OrderPageState extends State<OrderPage> {
           ),
           GestureDetector(
             onTap: () {
+              databaseReference.child("1").set({
+    
+'title': 'Mastering EJB',
+    
+'description': 'Programming Guide for J2EE'});
               Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => SignInPage()));
             },
             child: Container(
@@ -212,6 +272,8 @@ class _OrderPageState extends State<OrderPage> {
   }
   Widget _buildorderitems(Food food){
     return Container(
+
+   // if (_currentOrder = null){} return
         margin: EdgeInsets.only(bottom: 20.0),
         child: OrderCard(
           id: food.id,

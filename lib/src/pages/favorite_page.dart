@@ -30,7 +30,7 @@ var currentLocation = LocationData;
 
 class FireMapState extends State<FireMap> {
   GoogleMapController mapController;
-  Location location = new Location();
+  /*Location location = new Location();
   Marker marker;
   @override
 
@@ -82,9 +82,9 @@ class FireMapState extends State<FireMap> {
     );
   }
 }
+*/
 
 
-/*
 
 
   build(context) {

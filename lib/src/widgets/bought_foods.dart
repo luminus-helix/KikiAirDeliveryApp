@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 //import 'package:food_app_flutter_zone/src/widgets/order_card.dart';
-
+import 'package:food_app_flutter_zone/src/data/order_data.dart';
+import '../models/food_model.dart';
+import '../pages/order_page.dart';
 class BoughtFood extends StatefulWidget {
   final String id;
   final String name;
@@ -22,10 +24,12 @@ class BoughtFood extends StatefulWidget {
   @override
   _BoughtFoodState createState() => _BoughtFoodState();
 }
-double ordervalue = 20.0;
+
+String ordersummary = "";
+
 class _BoughtFoodState extends State<BoughtFood> {
   var cardText = TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold);
-
+  bool flag = false;
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
@@ -38,9 +42,7 @@ class _BoughtFoodState extends State<BoughtFood> {
             height: 230.0,
             width: 340.0,
             child: Image(
-              image: AssetImage(
-                widget.imagePath
-              ),
+              image: AssetImage(widget.imagePath),
               fit: BoxFit.cover,
             ),
           ),
@@ -48,7 +50,7 @@ class _BoughtFoodState extends State<BoughtFood> {
             left: 0.0,
             bottom: 0.0,
             width: 340.0,
-            height:70.0,
+            height: 70.0,
             child: Container(
               decoration: BoxDecoration(
                   gradient: LinearGradient(
@@ -106,32 +108,76 @@ class _BoughtFoodState extends State<BoughtFood> {
                         ),*/
                         Text(
                           //"$" + widget.ratings.toString() + " Reviews)", //concatenate
-                         widget.price.toString(),//concatenate a dollar sign here
-                    
-                          style: TextStyle(color: Colors.white,
-                          fontSize: 18.0),
+                          widget.price
+                              .toString(), //concatenate a dollar sign here
 
+                          style: TextStyle(color: Colors.white, fontSize: 18.0),
                         ),
                       ],
                     ),
                   ],
                 ),
                 Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: <Widget>[
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: <Widget>[
+                    GestureDetector(
+                      onTap: () {
+                        //
+                        //Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (BuildContext context) => OrderPage()));
+                        //ordervalue = ordervalue +   widget.price; //should be the cost of the item
+                        //ordersummary = ordersummary + widget.name;
+                        var newitem = Food(
+                          id: widget.id,
+                          name: widget.name,
+                          imagePath: widget.imagePath,
+                          category: widget.category,
+                          price: widget.price,
+                          discount: widget.discount,
+                          ratings: widget.ratings,
+                        );
+                        //if(!currentOrder.includes(widget.id)){
+                        for (var i =0; i<currentOrder.length;i++){
+                          if (currentOrder[i].id == widget.id){
+                            currentOrder[i].price += 1.0;
+                            //ordervalue = ordervalue +1.0;
+                            flag = true;
+                            break;
+                          }
+                          else {
+
+                          
                       
-                      GestureDetector(
-                        onTap: (){
-                          //
-                    //Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (BuildContext context) => OrderPage()));
-                          ordervalue = ordervalue + widget.price; //should be the cost of the item
-                          },
-                          child: Icon(
-                            Icons.add,
-                            color: Colors.white,
-                            //color: Theme.of(context).primaryColor,
-                            size: 30.0,
-                          ),
+                      continue;
+                          }
+                      //else{}
+                        }
+                       if (flag == false){
+                         currentOrder.add(Food(
+                          id: widget.id,
+                          name: widget.name,
+                          imagePath: widget.imagePath,
+                          category: widget.category,
+                          price: widget.price,
+                          discount: widget.discount,
+                          ratings: widget.ratings,
+
+                        )
+                        
+                        );
+                        ordersummary = ordersummary + widget.name;
+                        //addprice();
+                        ordervalue +=widget.price;
+                        }
+                        else{
+                          //ordervalue = ordervalue+widget.price;
+                        }
+                    },
+                      child: Icon(
+                        Icons.add,
+                        color: Colors.white,
+                        //color: Theme.of(context).primaryColor,
+                        size: 30.0,
+                      ),
                       /*Text(
                         widget.price.toString(),
                         style: TextStyle(
@@ -141,10 +187,9 @@ class _BoughtFoodState extends State<BoughtFood> {
                       ),
                       Text("Min order",
                           style: TextStyle(color: Colors.grey))*/
-                      ),
-                    ],
-                  ),
-              
+                    ),
+                  ],
+                ),
               ],
             ),
           ),

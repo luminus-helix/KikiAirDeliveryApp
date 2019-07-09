@@ -47,5 +47,7 @@
 	<false/>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>So I can track you at all times</string>
+	<key>io.flutter.embedded_views_preview</key>
+	<true/>
 </dict>
 </plist>
