@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-//import 'package:food_app_flutter_zone/src/widgets/order_card.dart';
+import 'package:food_app_flutter_zone/src/widgets/order_card.dart';
 import 'package:food_app_flutter_zone/src/data/order_data.dart';
 import '../models/food_model.dart';
 import '../pages/order_page.dart';
@@ -164,7 +164,7 @@ class _BoughtFoodState extends State<BoughtFood> {
                         )
                         
                         );
-                        ordersummary = ordersummary + widget.name;
+                        ordersummary = ordersummary + widget.name+ ', ';
                         //addprice();
                         ordervalue +=widget.price;
                         }

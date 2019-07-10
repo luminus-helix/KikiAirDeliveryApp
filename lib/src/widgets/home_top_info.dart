@@ -41,6 +41,7 @@ class _HomeTopState extends State<HomeTopInfo> {
      appBar: AppBar(
         title: StreamBuilder(
                     stream: hoursRef.onValue,
+                    //hoursRef.
                     builder: (context, snap) {
                       if (!snap.hasData) return Text("Loading...");
                       return Text("Kiki: We're " + snap.data.snapshot.value.toString() + "!",

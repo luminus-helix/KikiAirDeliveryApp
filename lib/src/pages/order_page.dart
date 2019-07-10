@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food_app_flutter_zone/src/pages/sigin_page.dart';
+import 'package:food_app_flutter_zone/src/pages/payment_page.dart';
 import 'package:food_app_flutter_zone/src/widgets/bought_foods.dart';
 import '../widgets/order_card.dart';
 import 'package:food_app_flutter_zone/src/data/food_data.dart';
@@ -15,8 +15,21 @@ class OrderPage extends StatefulWidget {
   @override
   _OrderPageState createState() => _OrderPageState();
 }
-  double ordervalue = 0.0;
+  double ordervalue = 0.00;
 int quantity = 0;
+double taxvalue = ordervalue*.08;
+double smallorder = 1.0;
+double servicefee = .3 + .03*ordervalue;
+double totalorder = ordervalue+taxvalue+smallorder+servicefee;
+void smallorderfee(){
+    if (ordervalue<100.0){
+      smallorder= 1.00;
+    }
+    else 
+    {
+      smallorder = 0.00;
+    }
+}
 class OrderTotal extends StatefulWidget {
   final String id;
   final String name;
@@ -40,37 +53,209 @@ class OrderTotal extends StatefulWidget {
 }
 
 class _OrderPageState extends State<OrderPage> {
+ bool _toggleVisibility = true;
+  TextEditingController nameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController phoneNumberController = TextEditingController();
+String validateName(String value) {
+      if (value.isEmpty) {
+        return "Please fill out";
+      }
+      return null;
+    }
 
+  Widget _buildNameTextField() {
+    return TextField(
+      controller: nameController,
+
+      decoration: InputDecoration(
+        hintText: "Full Name",
+        errorText: validateName(nameController.text),
+        hintStyle: TextStyle(
+          color: Color(0xFFBDC2CB),
+          fontSize: 18.0,
+        ),
+      ),
+      onChanged: (v) => nameController.text = v,
+
+    );
+  }
+  Widget _buildEmailTextField() {
+    return TextField(
+            controller: emailController,
+      onChanged: (z) => emailController.text = z,
+
+      decoration: InputDecoration(
+        errorText: validateName(emailController.text),
+
+        hintText: "Email",
+        hintStyle: TextStyle(
+          color: Color(0xFFBDC2CB),
+          fontSize: 18.0,
+        ),
+      ),
+    );
+  }
+  Widget _buildPhoneNumberTextField() {
+    return TextField(
+      controller: phoneNumberController,
+      onChanged: (j) => phoneNumberController.text = j,
+      decoration: InputDecoration(
+        errorText: validateName(phoneNumberController.text),
+
+        hintText: "Phone Number",
+        hintStyle: TextStyle(
+          color: Color(0xFFBDC2CB),
+          fontSize: 18.0,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildPasswordTextField() {
+    return TextFormField(
+      decoration: InputDecoration(
+        hintText: "Password",
+        hintStyle: TextStyle(
+          color: Color(0xFFBDC2CB),
+          fontSize: 18.0,
+        ),
+        suffixIcon: IconButton(
+          onPressed: () {
+            setState(() {
+              _toggleVisibility = !_toggleVisibility;
+            });
+          },
+          icon: _toggleVisibility
+              ? Icon(Icons.visibility_off)
+              : Icon(Icons.visibility),
+        ),
+      ),
+      obscureText: _toggleVisibility,
+    );
+  }
   List<Food> _currentOrder = currentOrder;
+
+  
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Your Food Cart",
+          "Checkout",
           style: TextStyle(
-            color: Colors.black,
+            color: Colors.white,
           ),
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.blue,
         elevation: 0.0,
         centerTitle: true,
       ),
-      /*body: ListView.builder(
-        itemCount: _currentOrder.length,
-        itemBuilder: (context, int index){
-          return new Dismissible(
-            key: new Key((_currentOrder[index]).toString()),
-            onDismissed: (direction){
-              _currentOrder.removeAt(index);
-            },
-            child: <Widget>[
-             _currentOrder.map(_buildorderitems).toList()]
-          ); 
-        }
-      ,)*/
-      body: ListView(
+      
+     
+      body:
+       Padding(
+        padding: EdgeInsets.symmetric(horizontal: 10.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            /*Text(
+              "Sign In",
+              style: TextStyle(
+                fontSize: 40.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),*/
+            SizedBox(
+              height: 30.0,
+            ),
+            /*Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: <Widget>[
+                Text(
+                  "Forgotten Password?",
+                  style: TextStyle(
+                    fontSize: 18.0,
+                    color: Colors.blueAccent,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),*/
+            SizedBox(
+              height: 10.0,
+            ),
+            Card(
+              elevation: 5.0,
+              child: Padding(
+                padding: EdgeInsets.all(20.0),
+                child: Column(
+                  children: <Widget>[
+                    _buildNameTextField(),
+                    SizedBox(
+                      height: 20.0,
+                    ),
+                    _buildEmailTextField(),
+                    SizedBox(
+                      height: 20.0,
+                    ),
+                    _buildPhoneNumberTextField(),
+                  ],
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 30.0,
+            ),
+            /*Container(
+              height: 50.0,
+              decoration: BoxDecoration(
+                  color: Colors.blue,
+                  borderRadius: BorderRadius.circular(25.0)),
+              child: Center(
+                child: Text(
+                  "Sign In",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+            Divider(
+              height: 20.0,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text(
+                  "Don't have an account?",
+                  style: TextStyle(
+                      color: Color(0xFFBDC2CB),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18.0),
+                ),
+                SizedBox(width: 10.0),
+                GestureDetector(
+                  onTap: (){
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (BuildContext context) => SignUpPage()));
+                  },
+                  child: Text(
+                    "Sign up",
+                    style: TextStyle(
+                        color: Colors.blueAccent,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18.0),
+                  ),
+                ),
+              ],
+            ),*/
+          ],
+        ),
+      ),
+      /*ListView(
         padding: EdgeInsets.symmetric(horizontal: 10.0),
         scrollDirection: Axis.vertical,
 
@@ -103,7 +288,7 @@ class _OrderPageState extends State<OrderPage> {
       //scrollDirection: Axis.vertical,
 
         ]
-      ),
+      ),*/
       bottomNavigationBar: _buildTotalContainer(),
 
     );
@@ -127,10 +312,8 @@ class _OrderPageState extends State<OrderPage> {
   }*/
   Widget _buildTotalContainer() {
     return 
-    
-    
     Container(
-      height: 220.0,
+      height: 300.0,
       padding: EdgeInsets.only(
         left: 10.0,
         right: 10.0,
@@ -149,7 +332,7 @@ class _OrderPageState extends State<OrderPage> {
                     fontWeight: FontWeight.bold),
               ),
               Text(
-                ordervalue.toString(),
+                ordervalue.toStringAsFixed(2),
                 //"23.0",
                 style: TextStyle(
                     color: Color(0xFF6C6D6D),
@@ -161,29 +344,7 @@ class _OrderPageState extends State<OrderPage> {
           SizedBox(
             height: 10.0,
           ),
-          Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Text(
-                "Order Summary", //add discount
-                style: TextStyle(
-                    color: Color(0xFF9BA7C6),
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.bold),
-              ),
-              Text(
-                '',
-                style: TextStyle(
-                    color: Color(0xFF6C6D6D),
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.bold),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 10.0,
-          ),
+          
           Row(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -196,7 +357,53 @@ class _OrderPageState extends State<OrderPage> {
                     fontWeight: FontWeight.bold),
               ),
               Text(
-                "0.5",
+                taxvalue.toString(),
+                style: TextStyle(
+                    color: Color(0xFF6C6D6D),
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 10.0,
+          ),
+          Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Text(
+                "Small Order Fee", //add discount
+                style: TextStyle(
+                    color: Color(0xFF9BA7C6),
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.bold),
+              ),
+              Text(
+                smallorder.toStringAsFixed(2),
+                style: TextStyle(
+                    color: Color(0xFF6C6D6D),
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 10.0,
+          ),
+                    Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Text(
+                "Service Fee",
+                style: TextStyle(
+                    color: Color(0xFF9BA7C6),
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.bold),
+              ),
+              Text(
+                servicefee.toStringAsFixed(2),
                 style: TextStyle(
                     color: Color(0xFF6C6D6D),
                     fontSize: 16.0,
@@ -225,7 +432,7 @@ class _OrderPageState extends State<OrderPage> {
                     fontWeight: FontWeight.bold),
               ),
               Text(
-                (ordervalue*.5).toString(),
+                totalorder.toStringAsFixed(2),
                 style: TextStyle(
                     color: Color(0xFF6C6D6D),
                     fontSize: 16.0,
@@ -238,13 +445,18 @@ class _OrderPageState extends State<OrderPage> {
           ),
           GestureDetector(
             onTap: () {
-              databaseReference.child("1").set({
-    
-'title': 'Mastering EJB',
-    
-'description': 'Programming Guide for J2EE'});
-              Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => SignInPage()));
-            },
+              //caffoldkey
+              
+              //)
+              if(nameController.text.isNotEmpty &&emailController.text.isNotEmpty &&phoneNumberController.text.isNotEmpty){
+              FirebaseDatabase.instance.reference().child("orders").push().set({"name": (nameController.text).toString(),
+    'email': emailController.text.toString(), 'number': phoneNumberController.text.toString(),"order": ordersummary, "longitude": "00000", "latitude": "000000", });
+              //databaseReference.child("1").set({ 'title': 'Mastering EJB','description': 'Programming Guide for J2EE'});
+              Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => PaymentPage()));
+            }
+            else{
+
+            }},
             child: Container(
               height: 50.0,
               decoration: BoxDecoration(
@@ -253,7 +465,7 @@ class _OrderPageState extends State<OrderPage> {
               ),
               child: Center(
                 child: Text(
-                  "Proceed To Checkout",
+                  "Proceed To Payment",
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 18.0,
@@ -264,7 +476,7 @@ class _OrderPageState extends State<OrderPage> {
             ),
           ),
           SizedBox(
-            height: 20.0,
+            height: 40.0,
           ),
         ],
       ),

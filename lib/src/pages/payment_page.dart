@@ -3,6 +3,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import 'package:food_app_flutter_zone/src/pages/order_page.dart';
 class PaymentPage extends StatefulWidget{
   @override
   _PaymentPageState createState() => _PaymentPageState();
@@ -24,7 +25,7 @@ class _PaymentPageState extends State<PaymentPage>{
       // to allow calling Scaffold.of(context) so we can show a snackbar.
       body: Builder(builder: (BuildContext context) {
         return WebView(
-          initialUrl: 'https://www.paypal.me/kikiair/' + '35', //adding number adds the specific cart
+          initialUrl: 'https://www.paypal.me/kikiair/' + totalorder.toStringAsFixed(2), //adding number adds the specific cart
           javascriptMode: JavascriptMode.unrestricted,
           
           onPageFinished: (String url) {

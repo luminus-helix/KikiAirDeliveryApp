@@ -5,6 +5,7 @@ import '../pages/favorite_page.dart';
 import '../pages/profile_page.dart';
 import '../pages/payment_page.dart';
 import '../pages/checkout_page.dart';
+import '../pages/cart_page.dart';
 
 class MainScreen extends StatefulWidget {
   @override
@@ -22,7 +23,7 @@ class _MainScreenState extends State<MainScreen> {
   CheckoutPage checkoutPage;
   //ProfilePage profilePage;
   PaymentPage paymentPage;
-
+  CartPage cartPage;
   List<Widget> pages;
   Widget currentPage;
 
@@ -34,7 +35,8 @@ class _MainScreenState extends State<MainScreen> {
     paymentPage =PaymentPage();
     checkoutPage = CheckoutPage();
     //profilePage = ProfilePage();
-    pages = [homePage, orderPage, paymentPage, checkoutPage];
+    cartPage = CartPage();
+    pages = [homePage, cartPage, paymentPage, checkoutPage];
 
     currentPage = homePage;
     super.initState();

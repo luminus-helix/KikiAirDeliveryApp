@@ -88,7 +88,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 10.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Text(
               nameController.text,
