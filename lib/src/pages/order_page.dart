@@ -15,11 +15,13 @@ class OrderPage extends StatefulWidget {
   @override
   _OrderPageState createState() => _OrderPageState();
 }
-  double ordervalue = 0.00;
-int quantity = 0;
+double ordervalue = 0.00;
+//int quantity = 0;
 double taxvalue = ordervalue*.08;
+double tipvalue = 0.00;
 double smallorder = 1.0;
 double servicefee = .3 + .03*ordervalue;
+double totalwithtip = ordervalue+taxvalue+smallorder+servicefee;
 double totalorder = ordervalue+taxvalue+smallorder+servicefee;
 void smallorderfee(){
     if (ordervalue<100.0){
@@ -38,6 +40,7 @@ class OrderTotal extends StatefulWidget {
   final double price;
   final double discount;
   final double ratings;
+  final int quantity;
 
   OrderTotal(
       {this.id,
@@ -46,7 +49,8 @@ class OrderTotal extends StatefulWidget {
       this.category,
       this.price,
       this.discount,
-      this.ratings});
+      this.ratings,
+      this.quantity});
 
   @override
   _OrderPageState createState() => _OrderPageState();
@@ -57,12 +61,21 @@ class _OrderPageState extends State<OrderPage> {
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController phoneNumberController = TextEditingController();
-String validateName(String value) {
+  TextEditingController tipController = TextEditingController();
+  String validateName(String value) {
       if (value.isEmpty) {
         return "Please fill out";
       }
       return null;
     }
+  void prefixtext(){
+    if (int.parse(tipController.text) <= .50){
+      tipController.text = '.50';
+    }
+    else{
+
+    }
+  }
 
   Widget _buildNameTextField() {
     return TextField(
@@ -102,7 +115,7 @@ String validateName(String value) {
       onChanged: (j) => phoneNumberController.text = j,
       decoration: InputDecoration(
         errorText: validateName(phoneNumberController.text),
-
+        //prefixText: ".50",
         hintText: "Phone Number",
         hintStyle: TextStyle(
           color: Color(0xFFBDC2CB),
@@ -111,29 +124,25 @@ String validateName(String value) {
       ),
     );
   }
-
-  Widget _buildPasswordTextField() {
-    return TextFormField(
+Widget _buildTipTextField() {
+    return TextField(
+      //prefixtext(),
+      controller: tipController,
+      onChanged: (j) => tipController.text = j,
+      textAlign: TextAlign.right,
       decoration: InputDecoration(
-        hintText: "Password",
+      //errorText: validateName(phoneNumberController.text),
+        //text
+        hintText: "Min 0.50",
         hintStyle: TextStyle(
           color: Color(0xFFBDC2CB),
           fontSize: 18.0,
-        ),
-        suffixIcon: IconButton(
-          onPressed: () {
-            setState(() {
-              _toggleVisibility = !_toggleVisibility;
-            });
-          },
-          icon: _toggleVisibility
-              ? Icon(Icons.visibility_off)
-              : Icon(Icons.visibility),
+
         ),
       ),
-      obscureText: _toggleVisibility,
     );
   }
+  
   List<Food> _currentOrder = currentOrder;
 
   
@@ -313,13 +322,117 @@ String validateName(String value) {
   Widget _buildTotalContainer() {
     return 
     Container(
-      height: 300.0,
+      height: 400.0,
       padding: EdgeInsets.only(
         left: 10.0,
         right: 10.0,
       ),
       child: Column(
         children: <Widget>[
+          
+          Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Text(
+                "Tip your pilot now?",
+                style: TextStyle(
+                    color: Color(0xFF9BA7C6),
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.bold),
+              ),
+              
+              
+              
+            ],
+          ),
+          Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          
+            children: <Widget>[
+              /*Text(
+                "Tip",
+                style: TextStyle(
+                    color: Color(0xFF9BA7C6),
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.bold),
+          //    ),*/
+//Container(
+           //     width:200.0,
+                
+         //  child:
+             //   ListView(
+             //   scrollDirection: Axis.vertical,
+        
+        
+      
+              //  children: <Widget> [ 
+                ButtonTheme(
+                  layoutBehavior: ButtonBarLayoutBehavior.constrained,
+                  minWidth: 75.0,
+                  buttonColor: Colors.white,
+                  //padding: new EdgeInsets.all(30.0),
+                  child: ButtonBar(
+                  mainAxisSize: MainAxisSize.min,
+                  
+                  children: <Widget>[
+
+            RaisedButton(
+                child: new Text('0.50'),
+                onPressed: (){
+                  setState(() {
+                  tipvalue = .5;
+                  //totalorder = totalorder +tipvalue;
+                  totalorder = totalorder +.5;
+                });
+                },
+            ),
+            RaisedButton(
+                child: new Text('0.75'),
+                onPressed: (){
+                  setState(() {
+                  tipvalue = .75;
+                  //totalorder = totalpretip;
+                  totalorder = totalorder +0.75;
+                });
+                },
+            ),
+             RaisedButton(
+                child: new Text('1.00'),
+                onPressed: (){
+                  setState(() {
+                  tipvalue = 1.00;
+                  //totalorder = totalpretip;
+                  totalorder = totalorder +1.0;
+                  //totalorder = totalorder +tipvalue;
+                });
+                },
+            ),
+            RaisedButton(
+                child: new Text('Not Now'),
+                onPressed: (){
+                  setState(() {
+                  tipvalue = 0;
+                  totalorder = totalwithtip;
+                  //totalorder = totalorder +.5;
+                });
+                },
+            ),
+          ],
+                  ),
+                ),
+            //_buildTipTextField()),
+             // )
+              //  ],
+              //),
+              //),
+            ]
+          ),
+         // ),
+          SizedBox(
+            height: 10.0,
+          ),
           Row(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -341,10 +454,11 @@ String validateName(String value) {
               ),
             ],
           ),
+          
+        
           SizedBox(
             height: 10.0,
           ),
-          
           Row(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -356,6 +470,7 @@ String validateName(String value) {
                     fontSize: 16.0,
                     fontWeight: FontWeight.bold),
               ),
+              
               Text(
                 taxvalue.toString(),
                 style: TextStyle(
@@ -363,6 +478,7 @@ String validateName(String value) {
                     fontSize: 16.0,
                     fontWeight: FontWeight.bold),
               ),
+              
             ],
           ),
           SizedBox(
@@ -379,6 +495,7 @@ String validateName(String value) {
                     fontSize: 16.0,
                     fontWeight: FontWeight.bold),
               ),
+              //_buildPasswordTextField() ,
               Text(
                 smallorder.toStringAsFixed(2),
                 style: TextStyle(
@@ -448,7 +565,7 @@ String validateName(String value) {
               //caffoldkey
               
               //)
-              if(nameController.text.isNotEmpty &&emailController.text.isNotEmpty &&phoneNumberController.text.isNotEmpty){
+              if(nameController.text.isNotEmpty &&emailController.text.isNotEmpty &&phoneNumberController.text.isNotEmpty&&double.parse(tipController.text)>0.5){
               FirebaseDatabase.instance.reference().child("orders").push().set({"name": (nameController.text).toString(),
     'email': emailController.text.toString(), 'number': phoneNumberController.text.toString(),"order": ordersummary, "longitude": "00000", "latitude": "000000", });
               //databaseReference.child("1").set({ 'title': 'Mastering EJB','description': 'Programming Guide for J2EE'});

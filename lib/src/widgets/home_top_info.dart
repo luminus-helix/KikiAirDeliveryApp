@@ -7,7 +7,6 @@ final databaseReference = FirebaseDatabase.instance.reference();
 
 var openclose;
 
-// maps api key AIzaSyBryu2oUXFOdwxD3G4pvNS2At
 class HomeTopInfo extends StatefulWidget {
   @override
   _HomeTopState createState() => _HomeTopState();

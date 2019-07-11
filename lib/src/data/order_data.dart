@@ -11,6 +11,7 @@ dynamic currentOrder = [
     price: 0,
     discount: 0,
     ratings: 0,
+    quantity: 0,
   ),
    /*Food(
     id: "",

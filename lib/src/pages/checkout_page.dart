@@ -21,6 +21,7 @@ class Order{
   final double price;
   final double discount;
   final double ratings;
+  final double quantity;
 
   Order({
     this.id,
@@ -29,7 +30,8 @@ class Order{
     this.category,
     this.price,
     this.discount,
-    this.ratings
+    this.ratings,
+    this.quantity
   });
 }
 

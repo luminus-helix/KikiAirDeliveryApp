@@ -10,7 +10,7 @@ class App extends StatelessWidget{
       theme: ThemeData(
         primaryColor: Colors.blueAccent
       ),
-      home: MainScreen(),
+      home: MainScreen(), //edit this to change the home Screen
     );
   }
 }

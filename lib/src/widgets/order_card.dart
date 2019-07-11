@@ -16,6 +16,7 @@ class OrderCard extends StatefulWidget {
   final double price;
   final double discount;
   final double ratings;
+  final int quantity;
 
   OrderCard(
       {this.id,
@@ -24,14 +25,15 @@ class OrderCard extends StatefulWidget {
       this.category,
       this.price,
       this.discount,
-      this.ratings});
+      this.ratings,
+      this.quantity});
 
   @override
   _OrderCardState createState() => _OrderCardState();
 }
 //double ordervalue = 0.0;
 
-int quantity =  0;
+//int quantity =  0;
 bool flag2 = false;
 
 class _OrderCardState extends State<OrderCard> {
@@ -95,7 +97,7 @@ class _OrderCardState extends State<OrderCard> {
 
                     Text(
                       //counter,
-                      quantity.toString(),
+                      widget.quantity.toString(),
                       style: TextStyle(fontSize: 18.0, color: Colors.grey),
                     ),
                     InkWell(

@@ -18,7 +18,7 @@ class _MainScreenState extends State<MainScreen> {
   // Pages
   HomePage homePage;
   OrderPage orderPage;
-  FavoritePage favoritePage;
+  //FavoritePage favoritePage;
   //LocationPage locationPage;
   CheckoutPage checkoutPage;
   //ProfilePage profilePage;

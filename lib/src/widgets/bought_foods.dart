@@ -11,6 +11,7 @@ class BoughtFood extends StatefulWidget {
   final double price;
   final double discount;
   final double ratings;
+  final int quantity;
 
   BoughtFood(
       {this.id,
@@ -19,7 +20,8 @@ class BoughtFood extends StatefulWidget {
       this.category,
       this.price,
       this.discount,
-      this.ratings});
+     this.ratings,
+      this.quantity});
 
   @override
   _BoughtFoodState createState() => _BoughtFoodState();
@@ -108,7 +110,7 @@ class _BoughtFoodState extends State<BoughtFood> {
                         ),*/
                         Text(
                           //"$" + widget.ratings.toString() + " Reviews)", //concatenate
-                          widget.price
+                          widget.quantity
                               .toString(), //concatenate a dollar sign here
 
                           style: TextStyle(color: Colors.white, fontSize: 18.0),
@@ -133,7 +135,7 @@ class _BoughtFoodState extends State<BoughtFood> {
                           category: widget.category,
                           price: widget.price,
                           discount: widget.discount,
-                          ratings: widget.ratings,
+                          //ratings: widget.ratings,
                         );
                         //if(!currentOrder.includes(widget.id)){
                         for (var i =0; i<currentOrder.length;i++){
@@ -160,6 +162,7 @@ class _BoughtFoodState extends State<BoughtFood> {
                           price: widget.price,
                           discount: widget.discount,
                           ratings: widget.ratings,
+                          quantity: widget.quantity,
 
                         )
                         

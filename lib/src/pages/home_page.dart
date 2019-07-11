@@ -123,7 +123,8 @@ class _HomePageState extends State<HomePage>{
           category: food.category,
           discount: food.discount,
           price: food.price,
-          ratings: food.ratings, //makes sure to call them inside the widget so can be used later
+          ratings: food.ratings,
+          quantity: food.quantity, //makes sure to call them inside the widget so can be used later
         ),
         
       );

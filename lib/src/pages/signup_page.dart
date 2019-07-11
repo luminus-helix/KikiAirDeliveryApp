@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food_app_flutter_zone/src/pages/sigin_page.dart';
+import 'package:food_app_flutter_zone/src/pages/signin_page.dart';
 
 class SignUpPage extends StatefulWidget {
   @override

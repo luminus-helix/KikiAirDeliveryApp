@@ -19,7 +19,7 @@ class CartPage extends StatefulWidget {
 }
 
   //double ordervalue = 0.0;
-int quantity = 0;
+//int quantity = 0;
 
 class OrderTotal extends StatefulWidget {
   final String id;
@@ -29,6 +29,7 @@ class OrderTotal extends StatefulWidget {
   final double price;
   final double discount;
   final double ratings;
+  final int quantity;
 
   OrderTotal(
       {this.id,
@@ -37,7 +38,8 @@ class OrderTotal extends StatefulWidget {
       this.category,
       this.price,
       this.discount,
-      this.ratings});
+      this.ratings,
+      this.quantity});
 
   @override
   _CartPageState createState() => _CartPageState();
@@ -225,6 +227,12 @@ List<Food> _currentOrder = currentOrder;
                       //InkWell(
                         onTap: () {
                           //addprice();
+                          setState(() {
+                            food.quantity+=1;
+                            ordervalue = ordervalue + food.price;
+                           // _currentOrder.contains(element)
+                            //food.quantity+=1;
+                          });
                           //addprice2();
                         },
                         child: Icon(Icons.keyboard_arrow_up,
@@ -235,11 +243,24 @@ List<Food> _currentOrder = currentOrder;
 
                     Text(
                       //counter,
-                      quantity.toString(),
+                      //currentOrder.
+                      food.quantity.toString(),
                       style: TextStyle(fontSize: 18.0, color: Colors.grey),
                     ),
                     InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          setState(() {
+                            if(food.quantity >1){
+                            food.quantity-=1;
+                            ordervalue = ordervalue - food.price;}
+                            else{
+                              food.quantity = 1;
+                            }
+                           // _currentOrder.contains(element)
+                            //food.quantity+=1;
+                          });
+                          //addprice2();
+                        },
                         child: Icon(Icons.keyboard_arrow_down,
                             color: Color(0xFFD3D3D3))),
                   ],
@@ -329,9 +350,9 @@ List<Food> _currentOrder = currentOrder;
                 
                 flag2 = true;
                 setState(() {
-                  _currentOrder;
+                  //_currentOrder;
                   _currentOrder.removeWhere((item) => item.id == food.id);
-
+                  ordervalue = ordervalue - food.quantity*food.price;
                   //refreshList();
                 });
                 //_pageController;
