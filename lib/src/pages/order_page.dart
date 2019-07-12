@@ -166,8 +166,12 @@ Widget _buildTipTextField() {
       body:
        Padding(
         padding: EdgeInsets.symmetric(horizontal: 10.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+        child: ListView(
+                  scrollDirection: Axis.vertical,
+
+        //Column(
+         // mainAxisAlignment: MainAxisAlignment.start,
+
           children: <Widget>[
             /*Text(
               "Sign In",
@@ -212,6 +216,7 @@ Widget _buildTipTextField() {
                     _buildPhoneNumberTextField(),
                   ],
                 ),
+                //),
               ),
             ),
             SizedBox(
@@ -261,7 +266,12 @@ Widget _buildTipTextField() {
                 ),
               ],
             ),*/
+            Container(
+              child:
+              _buildTotalContainer(),
+            )
           ],
+              //  bottomNavigationBar: _buildTotalContainer(),
         ),
       ),
       /*ListView(
@@ -298,7 +308,6 @@ Widget _buildTipTextField() {
 
         ]
       ),*/
-      bottomNavigationBar: _buildTotalContainer(),
 
     );
   }
@@ -346,11 +355,14 @@ Widget _buildTipTextField() {
               
             ],
           ),
-          Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          
-            children: <Widget>[
+          SizedBox(
+            height: 10.0,
+          ),
+          Container(
+           // mainAxisSize: MainAxisSize.max,
+           // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            height:40.0,
+            child:
               /*Text(
                 "Tip",
                 style: TextStyle(
@@ -362,15 +374,16 @@ Widget _buildTipTextField() {
            //     width:200.0,
                 
          //  child:
-             //   ListView(
-             //   scrollDirection: Axis.vertical,
+               ListView(
+               
+               scrollDirection: Axis.horizontal,
         
         
       
-              //  children: <Widget> [ 
+                children: <Widget> [ 
                 ButtonTheme(
                   layoutBehavior: ButtonBarLayoutBehavior.constrained,
-                  minWidth: 75.0,
+                  minWidth: 50.0,
                   buttonColor: Colors.white,
                   //padding: new EdgeInsets.all(30.0),
                   child: ButtonBar(
@@ -422,12 +435,14 @@ Widget _buildTipTextField() {
           ],
                   ),
                 ),
+                ],
+               ),
             //_buildTipTextField()),
              // )
               //  ],
               //),
               //),
-            ]
+            //]
           ),
          // ),
           SizedBox(
@@ -563,9 +578,10 @@ Widget _buildTipTextField() {
           GestureDetector(
             onTap: () {
               //caffoldkey
-              
+              //nameController.text.toString().isNotEmpty &&emailController.text.toString().isNotEmpty &&phoneNumberController.text.toString().isNotEmpty
               //)
-              if(nameController.text.isNotEmpty &&emailController.text.isNotEmpty &&phoneNumberController.text.isNotEmpty&&double.parse(tipController.text)>0.5){
+              if(nameController.text.toString().isNotEmpty &&emailController.text.toString().isNotEmpty &&phoneNumberController.text.toString().isNotEmpty
+){
               FirebaseDatabase.instance.reference().child("orders").push().set({"name": (nameController.text).toString(),
     'email': emailController.text.toString(), 'number': phoneNumberController.text.toString(),"order": ordersummary, "longitude": "00000", "latitude": "000000", });
               //databaseReference.child("1").set({ 'title': 'Mastering EJB','description': 'Programming Guide for J2EE'});
