@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food_app_flutter_zone/src/pages/sigin_page.dart';
+import 'package:food_app_flutter_zone/src/pages/signin_page.dart';
 
 class SignUpPage extends StatefulWidget {
   @override
@@ -87,7 +87,7 @@ class _SignUpPageState extends State<SignUpPage> {
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 10.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Text(
               "Sign Up",

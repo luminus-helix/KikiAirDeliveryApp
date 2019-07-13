@@ -3,6 +3,8 @@ import 'package:food_app_flutter_zone/src/widgets/bought_foods.dart';
 import '../widgets/home_top_info.dart';
 import '../widgets/food_category.dart';
 import '../widgets/search_file.dart';
+import '../models/food_model.dart';
+import 'package:firebase_database/firebase_database.dart';
 
 // Data
 import '../data/food_data.dart';
@@ -19,30 +21,77 @@ class _HomePageState extends State<HomePage>{
 
   List<Food> _foods = foods;
   
+  final textStyle = TextStyle(fontSize: 32.0, fontWeight: FontWeight.bold);
+  DatabaseReference itemRef;
+  Item item;
+  void initState() {
+    super.initState();
+    item = Item("", "");
+    final FirebaseDatabase database = FirebaseDatabase
+        .instance; //Rather then just writing FirebaseDatabase(), get the instance.
+    itemRef = database.reference().child('hours');
+    //itemRef.onChildAdded.listen(_onEntryAdded);
+    //itemRef.onChildChanged.listen(_onEntryChanged);
+  }
+  var hoursRef = FirebaseDatabase.instance.reference().child('hours');
+
 
   @override
   Widget build(BuildContext context){
-    
+    //HomeTopInfo();
     return Scaffold(
+      appBar: AppBar(
+        title: StreamBuilder(
+                    stream: hoursRef.onValue,
+                    builder: (context, snap) {
+                      if (!snap.hasData) return Text("Loading...");
+                      return Text("Kiki: We're " + snap.data.snapshot.value.toString() + "!",
+                          style: textStyle);
+
+                      //DataSnapshot snapshot = snap.data.snapshot;
+//List item=[],
+                      var jasonpilot;
+//it gives all the documents in this list.
+                      // jasonpilot=snapshot.value;
+
+                      //Text(jasonpilot.toString(), style:textStyle);
+
+//Now we're just checking if document is not null then add it to another list called "item".
+//I faced this problem it works fine without null check until you remove a document and then your stream reads data including the removed one with a null value(if you have some better approach let me know).
+                    }),
+        //const Text('Flutter WebView example'),
+        // This drop down menu demonstrates that Flutter widgets can be shown over the web view.
+        actions: <Widget>[
+          //NavigationControls(_controller.future),
+          //SampleMenu(_controller.future),
+        ],
+      ),
       body: ListView(
-        padding: EdgeInsets.only(top: 50.0, left: 20.0, right: 20.0),
+        padding: EdgeInsets.only(top: 20.0, left: 20.0, right: 20.0),
         children: <Widget>[
-          HomeTopInfo(),
-          FoodCategory(),
+         
+          //foods.add(),
+          //FoodCategory(),
+          //SizedBox(height: 20.0,),
+          //SearchField(),
+          //SizedBox(height: 20.0,),
+          Text("Free Delivery on all Orders!!", style: TextStyle( //wrap this in a container
+                  fontSize: 24.0,
+                  fontWeight: FontWeight.bold,
+                ),),
           SizedBox(height: 20.0,),
-          SearchField(),
-          SizedBox(height: 20.0,),
+
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Text(
-                "Frequently Bought Foods",
+                "Items",
                 style: TextStyle(
-                  fontSize: 18.0,
+                  fontSize: 30.0,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              GestureDetector(
+              /*GestureDetector(
                 onTap: (){},
                 child: Text(
                   "View all",
@@ -52,12 +101,12 @@ class _HomePageState extends State<HomePage>{
                     fontSize: 18.0,
                   ),
                 ),
-              ),
+              ),*/
             ],
           ),
           SizedBox(height: 20.0),
           Column(
-            children: _foods.map(_buildFoodItems).toList(),
+            children: _foods.map(_buildFoodItems).toList(), //converts the data from foods to a list
           ),
         ],
       ),
@@ -75,7 +124,9 @@ class _HomePageState extends State<HomePage>{
           discount: food.discount,
           price: food.price,
           ratings: food.ratings,
+          quantity: food.quantity, //makes sure to call them inside the widget so can be used later
         ),
+        
       );
   }
 

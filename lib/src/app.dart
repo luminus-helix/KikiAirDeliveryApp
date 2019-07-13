@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'screens/main_screen.dart';
+
 class App extends StatelessWidget{
   @override
   Widget build(BuildContext context){
@@ -9,7 +10,7 @@ class App extends StatelessWidget{
       theme: ThemeData(
         primaryColor: Colors.blueAccent
       ),
-      home: MainScreen(),
+      home: MainScreen(), //edit this to change the home Screen
     );
   }
 }

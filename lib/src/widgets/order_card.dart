@@ -1,12 +1,68 @@
 import 'package:flutter/material.dart';
+import 'package:food_app_flutter_zone/src/data/order_data.dart';
+import 'package:food_app_flutter_zone/src/pages/order_page.dart';
+import 'package:food_app_flutter_zone/src/widgets/bought_foods.dart';
+import 'package:food_app_flutter_zone/src/pages/cart_page.dart';
+import 'package:food_app_flutter_zone/src/models/food_model.dart';
+
+//List<Food> currentOrder2 = currentOrder;
+
 
 class OrderCard extends StatefulWidget {
+  final String id;
+  final String name;
+  final String imagePath;
+  final String category;
+  final double price;
+  final double discount;
+  final double ratings;
+  final int quantity;
+
+  OrderCard(
+      {this.id,
+      this.name,
+      this.imagePath,
+      this.category,
+      this.price,
+      this.discount,
+      this.ratings,
+      this.quantity});
+
+  @override
   _OrderCardState createState() => _OrderCardState();
 }
+//double ordervalue = 0.0;
+
+//int quantity =  0;
+bool flag2 = false;
 
 class _OrderCardState extends State<OrderCard> {
-  @override
+  dynamic counter = '';
+  var removeid;
+  void addprice(){
+    setState((){
+      //widget.price++;
+      //ordervalue = ordervalue + widget.price;
+
+      //counter = quantity.toString();
+    });
+  } 
+  void addprice2(){
+    setState(() {
+    ordervalue = ordervalue + widget.price;
+
+    });
+  }
+
+  @override//int
   Widget build(BuildContext context) {
+  //int quantity =   0;
+
+  if(widget.id == ''){
+  return new Container();
+  }
+  else{
+  
     return Card(
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
@@ -27,16 +83,22 @@ class _OrderCardState extends State<OrderCard> {
                 ),
                 child: Column(
                   children: <Widget>[
-                    InkWell(
-                        onTap: () {},
+                    GestureDetector(
+                      //InkWell(
+                        onTap: () {
+                          addprice();
+                          addprice2();
+                        },
                         child: Icon(Icons.keyboard_arrow_up,
                             color: Color(0xFFD3D3D3))),
+
+
+                    
+
                     Text(
-                      "0",
-                      style: TextStyle(
-                        fontSize: 18.0,
-                        color: Colors.grey
-                      ),
+                      //counter,
+                      widget.quantity.toString(),
+                      style: TextStyle(fontSize: 18.0, color: Colors.grey),
                     ),
                     InkWell(
                         onTap: () {},
@@ -54,7 +116,8 @@ class _OrderCardState extends State<OrderCard> {
               width: 70.0,
               decoration: BoxDecoration(
                   image: DecorationImage(
-                      image: AssetImage("assets/images/lunch.jpeg"),
+                      image: AssetImage(widget.imagePath),
+                      //AssetImage("assets/images/lunch.jpeg"),
                       fit: BoxFit.cover),
                   borderRadius: BorderRadius.circular(35.0),
                   boxShadow: [
@@ -68,16 +131,19 @@ class _OrderCardState extends State<OrderCard> {
               width: 20.0,
             ),
             Column(
+              
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                  "Grilled Chicken",
+                  widget.name,
                   style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(height: 5.0),
                 Text(
-                  "\u01FE 3.0",
+                  
+                  //"\u01FE 3.0",
+                  ordervalue.toString(), 
                   style: TextStyle(
                       fontSize: 16.0,
                       color: Colors.orangeAccent,
@@ -92,18 +158,17 @@ class _OrderCardState extends State<OrderCard> {
                     children: <Widget>[
                       Row(
                         children: <Widget>[
-                          Text(
-                            "Chicken",
-                            style: TextStyle(
-                            color: Color(0xFFD3D3D3),
-                            fontWeight: FontWeight.bold)),
+                          Text("blank", //used to be the under text of it that said chicken
+                              style: TextStyle(
+                                  color: Color(0xFFD3D3D3),
+                                  fontWeight: FontWeight.bold)),
                           SizedBox(
                             width: 5.0,
                           ),
                           InkWell(
                             onTap: () {},
                             child: Text(
-                              "x",
+                              "blank",
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: Colors.red,
@@ -122,7 +187,44 @@ class _OrderCardState extends State<OrderCard> {
             ),
             Spacer(),
             GestureDetector(
-              onTap:(){},
+              onTap: () {
+                
+                flag2 = true;
+                setState(() {
+                  currentOrder;
+                  currentOrder.removeWhere((item) => item.id == widget.id);
+
+                  //refreshList();
+                });
+                //_pageController;
+
+                        //if(!currentOrder.includes(widget.id)){
+                     /*   for (var i =0; i<currentOrder.length;i++){
+                          if (currentOrder[i].id == widget.id){
+                            currentOrder[i].price += 1.0;
+                            //ordervalue = ordervalue +1.0;
+                            flag2 = true;
+                            removeid = i;
+                            break;
+                          }
+                          else {
+
+                          
+                      
+                      continue;
+                          }
+                      //else{}
+                        }
+                       if (flag2 == true){
+                        currentOrder.
+                        ordersummary = ordersummary + widget.name+ ', ';
+                        //addprice();
+                        ordervalue +=widget.price;
+                        }
+                        else{
+                          //ordervalue = ordervalue+widget.price;
+                        }*/
+              },
               child: Icon(
                 Icons.cancel,
                 color: Colors.grey,
@@ -131,6 +233,6 @@ class _OrderCardState extends State<OrderCard> {
           ],
         ),
       ),
-    );
+    );}
   }
 }
