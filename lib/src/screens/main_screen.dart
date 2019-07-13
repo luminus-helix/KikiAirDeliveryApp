@@ -75,7 +75,7 @@ class _MainScreenState extends State<MainScreen> {
           decoration: BoxDecoration(color: Colors.lightBlueAccent.withOpacity(0.95), borderRadius: BorderRadius.circular(20)),
         ),
         Container(
-          alignment: Alignment(0,0.13),
+          alignment: Alignment(0,0.11),
           child: Container (
           width: MediaQuery.of(context).size.width*0.61,
           height: MediaQuery.of(context).size.height*0.45,
@@ -88,7 +88,7 @@ class _MainScreenState extends State<MainScreen> {
          )
         ),
         Container(
-          alignment: Alignment(0,-0.75),
+          alignment: Alignment(0,-0.695),
           width: MediaQuery.of(context).size.width*0.6,
           child: 
           StreamBuilder(
@@ -102,21 +102,21 @@ class _MainScreenState extends State<MainScreen> {
                       else if(snap.data.snapshot.value.toString() == 'Open') {
                         isOpen = true;
                           return Text("We're Open!",
-                          style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold));
+                          style: TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.bold));
                       //return Text("Kiki: We're " + snap.data.snapshot.value.toString() + "!",
                          // style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold));
                       }
                       else{
                         isOpen = false;
                           return Text("Sorry, we're closed",
-                          style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold));
+                          style: TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.bold));
                       }
 
                     }),
           
         ), 
          Container(
-          alignment: Alignment(0,-0.63),
+          alignment: Alignment(0,-0.565),
           width: MediaQuery.of(context).size.width*0.8,
           child: Text(
             r"Free Delivery on Orders Less than $5!",
@@ -124,7 +124,7 @@ class _MainScreenState extends State<MainScreen> {
           )
         ), 
         Container(
-          alignment: Alignment(0,-0.545),
+          alignment: Alignment(0,-0.48),
           width: MediaQuery.of(context).size.width*0.6,
           child: Text(
             "Airdrop Instructions: ",
@@ -133,7 +133,7 @@ class _MainScreenState extends State<MainScreen> {
         ), 
 
         Container(
-          alignment: Alignment(0,0.755),
+          alignment: Alignment(0,0.69),
           child: 
            FloatingActionButton(
              //materialTapTargetSize: ,
