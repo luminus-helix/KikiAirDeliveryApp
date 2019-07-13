@@ -42,6 +42,7 @@ class _HomePageState extends State<HomePage>{
     return Scaffold(
       appBar: AppBar(
         title: Text('Kiki', style: textStyle),
+        backgroundColor: Color(0xff81DAF5),
                       //DataSnapshot snapshot = snap.data.snapshot;
 //List item=[],
                      // var jasonpilot;

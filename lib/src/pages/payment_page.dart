@@ -44,6 +44,7 @@ class _PaymentPageState extends State<PaymentPage>{
     return Scaffold(
       appBar: AppBar(
         title: const Text('Payment'),
+        backgroundColor: Color(0xff81DAF5),
         // This drop down menu demonstrates that Flutter widgets can be shown over the web view.
         actions: <Widget>[
           

@@ -60,10 +60,12 @@ List<Food> _currentOrder = currentOrder;
         title: Text(
           "Your Food Cart",
           style: TextStyle(
-            color: Colors.black,
+            color: Colors.white,
+            fontSize: 32,
+            fontWeight: FontWeight.bold
           ),
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: Color(0xff81DAF5),
         elevation: 0.0,
         centerTitle: true,
       ),

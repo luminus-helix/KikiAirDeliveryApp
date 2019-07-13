@@ -193,7 +193,7 @@ class _LocationPageState extends State<LocationPage>{
       home: Scaffold(
         appBar: AppBar(
           title: Text("Tap for Dropoff Location"),
-          backgroundColor: Colors.blueAccent,
+          backgroundColor: Color(0xff81DAF5),
           elevation: 20,
           actions: <Widget>
            [

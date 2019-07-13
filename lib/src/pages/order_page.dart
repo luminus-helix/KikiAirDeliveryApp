@@ -160,7 +160,7 @@ Widget _buildTipTextField() {
             color: Colors.white,
           ),
         ),
-        backgroundColor: Colors.blue,
+        backgroundColor: Color(0xff81DAF5),
         elevation: 0.0,
         centerTitle: true,
       ),
