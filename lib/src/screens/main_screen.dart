@@ -58,26 +58,27 @@ class _MainScreenState extends State<MainScreen> {
        children: <Widget>[
         currentPage,
         Container(
-          width: MediaQuery.of(context).size.width*0.9,
-          height: MediaQuery.of(context).size.height*0.6,
-          alignment: Alignment.center,
+          alignment: Alignment(0,0.1),
+          width: MediaQuery.of(context).size.width*0.94,
+          height: MediaQuery.of(context).size.height*0.75,
+          
           decoration: BoxDecoration(color: Colors.lightBlueAccent.withOpacity(0.95), borderRadius: BorderRadius.circular(20)),
         ),
         Container(
-          alignment: Alignment(0,0.08),
+          alignment: Alignment(0,0.13),
           child: Container (
-          width: MediaQuery.of(context).size.width*0.6,
-          height: MediaQuery.of(context).size.height*0.4,
+          width: MediaQuery.of(context).size.width*0.61,
+          height: MediaQuery.of(context).size.height*0.45,
          decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),color: Colors.white  ),
          child: Image(
             image: AssetImage("assets/images/instructions.png"),
-            width: MediaQuery.of(context).size.width*0.8,
-            height: MediaQuery.of(context).size.height*0.8,
+            width: 0.9*MediaQuery.of(context).size.width,
+            height: 0.9*MediaQuery.of(context).size.height,
           )
          )
         ),
         Container(
-          alignment: Alignment(0,-0.62),
+          alignment: Alignment(0,-0.75),
           width: MediaQuery.of(context).size.width*0.6,
           child: Text(
             isOpen ? 'Kiki is Open!' : "Kiki is Closed :(",
@@ -85,7 +86,7 @@ class _MainScreenState extends State<MainScreen> {
           )
         ), 
          Container(
-          alignment: Alignment(0,-0.54),
+          alignment: Alignment(0,-0.63),
           width: MediaQuery.of(context).size.width*0.8,
           child: Text(
             r"Free Delivery on Orders Less than $5!",
@@ -93,7 +94,7 @@ class _MainScreenState extends State<MainScreen> {
           )
         ), 
         Container(
-          alignment: Alignment(0,-0.48),
+          alignment: Alignment(0,-0.545),
           width: MediaQuery.of(context).size.width*0.6,
           child: Text(
             "Airdrop Instructions: ",
@@ -102,7 +103,7 @@ class _MainScreenState extends State<MainScreen> {
         ), 
 
         Container(
-          alignment: Alignment(0,0.61),
+          alignment: Alignment(0,0.755),
           child: 
            FloatingActionButton(
              backgroundColor: Colors.red.withOpacity(0),
@@ -112,7 +113,7 @@ class _MainScreenState extends State<MainScreen> {
                  bannerShown = false; 
                });
              } ,
-             child: Icon(Icons.cancel, color: Colors.redAccent, size: 50),
+             child: Icon(Icons.cancel, color: Colors.redAccent, size: 60),
              
              )
 
