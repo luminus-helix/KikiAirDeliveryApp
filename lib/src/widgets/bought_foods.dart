@@ -34,16 +34,199 @@ class _BoughtFoodState extends State<BoughtFood> {
   bool flag = false;
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
+ return Card(
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            
+            Container(
+              height: 70.0,
+              width: 70.0,
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage(widget.imagePath),
+                      //AssetImage("assets/images/lunch.jpeg"),
+                      fit: BoxFit.cover),
+                  borderRadius: BorderRadius.circular(35.0),
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.black,
+                        blurRadius: 5.0,
+                        offset: Offset(0.0, 2.0))
+                  ]),
+            ),
+            SizedBox(
+              width: 20.0,
+            ),
+            Column(
+              
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              
+              children: <Widget>[
+                ConstrainedBox(
+                  constraints: BoxConstraints(maxWidth: 130),
+                  child: 
+                  Text(
+                  widget.name,
+                  style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+                  softWrap: true,
+                  overflow: TextOverflow.fade,
+                ),
+                ),
+                
+                SizedBox(height: 5.0),
+                Text(
+                  
+                  //"\u01FE 3.0",
+                  r'$' + widget.price.toStringAsFixed(2), 
+                  style: TextStyle(
+                      fontSize: 16.0,
+                      color: Colors.orangeAccent,
+                      fontWeight: FontWeight.bold),
+                ),
+                SizedBox(height: 5.0),
+               /* Container(
+                  height: 25.0,
+                  width: 120.0,
+                  child: ListView(
+                    scrollDirection: Axis.horizontal,
+                    children: <Widget>[
+                      Row(
+                        children: <Widget>[
+                          Text("blank", //used to be the under text of it that said chicken
+                              style: TextStyle(
+                                  color: Color(0xFFD3D3D3),
+                                  fontWeight: FontWeight.bold)),
+                          SizedBox(
+                            width: 5.0,
+                          ),
+                          InkWell(
+                            onTap: () {},
+                            child: Text(
+                              "blank",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.red,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 10.0,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),*/
+              ],
+            ),
+            Spacer(),
+            GestureDetector(
+              onTap: () {
+                //
+                        //Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (BuildContext context) => OrderPage()));
+                        //ordervalue = ordervalue +   widget.price; //should be the cost of the item
+                        //ordersummary = ordersummary + widget.name;
+                        var newitem = Food(
+                          id: widget.id,
+                          name: widget.name,
+                          imagePath: widget.imagePath,
+                          category: widget.category,
+                          price: widget.price,
+                          discount: widget.discount,
+                          //ratings: widget.ratings,
+                        );
+                        //if(!currentOrder.includes(widget.id)){
+                        for (var i =0; i<currentOrder.length;i++){
+                          if (currentOrder[i].id == widget.id){
+                            currentOrder[i].price += 1.0;
+                            //ordervalue = ordervalue +1.0;
+                            flag = true;
+                            break;
+                          }
+                          else {
+
+                          
+                      
+                      continue;
+                          }
+                        }
+                         if (flag == false){
+                         currentOrder.add(Food(
+                          id: widget.id,
+                          name: widget.name,
+                          imagePath: widget.imagePath,
+                          category: widget.category,
+                          price: widget.price,
+                          discount: widget.discount,
+                          ratings: widget.ratings,
+                          quantity: widget.quantity,
+
+                        )
+                        
+                        );
+                        ordersummary = ordersummary + widget.name+ ', ';
+                        //addprice();
+                        ordervalue +=widget.price;
+                        }
+                        else{
+                          //ordervalue = ordervalue+widget.price;
+                        }
+                
+                //_pageController;
+
+                        //if(!currentOrder.includes(widget.id)){
+                     /*   for (var i =0; i<currentOrder.length;i++){
+                          if (currentOrder[i].id == widget.id){
+                            currentOrder[i].price += 1.0;
+                            //ordervalue = ordervalue +1.0;
+                            flag2 = true;
+                            removeid = i;
+                            break;
+                          }
+                          else {
+
+                          
+                      
+                      continue;
+                          }
+                      //else{}
+                        }
+                       if (flag2 == true){
+                        currentOrder.
+                        ordersummary = ordersummary + widget.name+ ', ';
+                        //addprice();
+                        ordervalue +=widget.price;
+                        }
+                        else{
+                          //ordervalue = ordervalue+widget.price;
+                        }*/
+              },
+              child: Icon(
+                Icons.add,
+                color: Colors.black, size:30,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );}
+    /*return ClipRRect(
       borderRadius: BorderRadius.all(
         Radius.circular(10.0),
       ),
       child: Stack(
         children: <Widget>[
           Container(
-            height: 230.0,
+            height: 90.0, //230.0
             width: 340.0,
             child: Image(
+              alignment: Alignment(0,-0.3),
+
               image: AssetImage(widget.imagePath),
               fit: BoxFit.cover,
             ),
@@ -52,13 +235,13 @@ class _BoughtFoodState extends State<BoughtFood> {
             left: 0.0,
             bottom: 0.0,
             width: 340.0,
-            height: 70.0,
+            height: 58.0,
             child: Container(
               decoration: BoxDecoration(
                   gradient: LinearGradient(
                       begin: Alignment.bottomCenter,
                       end: Alignment.topCenter,
-                      colors: [Colors.black, Colors.black12])),
+                     colors: [Colors.black, Colors.black12])),
             ),
           ),
           Positioned(
@@ -74,7 +257,7 @@ class _BoughtFoodState extends State<BoughtFood> {
                     Text(
                       widget.name,
                       style: TextStyle(
-                          fontSize: 18.0,
+                          fontSize: 14.0,
                           fontWeight: FontWeight.bold,
                           color: Colors.white),
                     ),
@@ -110,8 +293,7 @@ class _BoughtFoodState extends State<BoughtFood> {
                         ),*/
                         Text(
                           //"$" + widget.ratings.toString() + " Reviews)", //concatenate
-                          widget.quantity
-                              .toString(), //concatenate a dollar sign here
+                          (r'$' + widget.price.toStringAsFixed(2)), //concatenate a dollar sign here
 
                           style: TextStyle(color: Colors.white, fontSize: 18.0),
                         ),
@@ -198,6 +380,6 @@ class _BoughtFoodState extends State<BoughtFood> {
           ),
         ],
       ),
-    );
+    );*/
   }
 }

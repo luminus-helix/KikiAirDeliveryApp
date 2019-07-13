@@ -27,7 +27,7 @@ double servicefee = .3 + .03*ordervalue;
 double totalwithtip = ordervalue+taxvalue+smallorder+servicefee;
 double totalorder = ordervalue+taxvalue+smallorder+servicefee;
 void smallorderfee(){
-    if (ordervalue<100.0){
+    if (ordervalue<5.0){
       smallorder= 1.00;
     }
     else 
@@ -490,7 +490,7 @@ Widget _buildTipTextField() {
               ),
               
               Text(
-                taxvalue.toString(),
+                taxvalue.toStringAsFixed(2),
                 style: TextStyle(
                     color: Color(0xFF6C6D6D),
                     fontSize: 16.0,
@@ -589,9 +589,22 @@ Widget _buildTipTextField() {
     'email': emailController.text.toString(), 'number': phoneNumberController.text.toString(),"order": ordersummary, "longitude": sendingLat.toString(), "latitude": sendingLong.toString(), });
               //databaseReference.child("1").set({ 'title': 'Mastering EJB','description': 'Programming Guide for J2EE'});
               Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => PaymentPage()));
+              currentOrder.removeWhere((item) => item.id != "");
             }
             else{
+return showDialog(
+                      
+                      context: context,
+                      
+                      builder: (context) {
+                        return AlertDialog(
+                          // Retrieve the text the user has entered by using the
+                          // TextEditingController.
+                          content: Text("Please fill out all the information!"),
+                        );
 
+              }
+                );
             }},
             child: Container(
               height: 50.0,

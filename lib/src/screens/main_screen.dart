@@ -1,47 +1,57 @@
 import 'package:flutter/material.dart';
 import '../pages/home_page.dart';
-import '../pages/order_page.dart';
-import '../pages/location_page.dart';
-import '../pages/profile_page.dart';
-import '../pages/payment_page.dart';
-import '../pages/checkout_page.dart';
+//import '../pages/order_page.dart';
+//import '../pages/location_page.dart';
+//import '../pages/profile_page.dart';
+//import '../pages/payment_page.dart';
+//import '../pages/checkout_page.dart';
 import '../pages/cart_page.dart';
+import 'package:firebase_database/firebase_database.dart';
+
 
 class MainScreen extends StatefulWidget {
   @override
   _MainScreenState createState() => _MainScreenState();
 }
+bool isOpen = false; 
 
 class _MainScreenState extends State<MainScreen> {
+  DatabaseReference itemRef;
+
   int currentTab = 0;
   bool bannerShown = true; 
-  bool isOpen = true; 
   // Pages
   HomePage homePage;
-  OrderPage orderPage;
-  LocationPage locationPage;
+  //OrderPage orderPage;
   //LocationPage locationPage;
-  CheckoutPage checkoutPage;
+  //LocationPage locationPage;
+  //CheckoutPage checkoutPage;
   //ProfilePage profilePage;
-  PaymentPage paymentPage;
+  //PaymentPage paymentPage;
   CartPage cartPage;
   List<Widget> pages;
   Widget currentPage;
 
   @override
   void initState() {
+    final FirebaseDatabase database = FirebaseDatabase
+        .instance; //Rather then just writing FirebaseDatabase(), get the instance.
+    itemRef = database.reference().child('hours');
     homePage = HomePage();
-    orderPage = OrderPage();
-    locationPage = LocationPage();
-    paymentPage =PaymentPage();
-    checkoutPage = CheckoutPage();
+    //orderPage = OrderPage();
+    //locationPage = LocationPage();
+    //paymentPage =PaymentPage();
+    //checkoutPage = CheckoutPage();
     //profilePage = ProfilePage();
     cartPage = CartPage();
-    pages = [homePage, locationPage, cartPage, paymentPage, checkoutPage];
+    pages = [homePage,  cartPage];
 
     currentPage = homePage;
     super.initState();
   }
+  var hoursRef = FirebaseDatabase.instance.reference().child('hours');
+
+  
 
   @override
   Widget build(BuildContext context) {
@@ -80,10 +90,30 @@ class _MainScreenState extends State<MainScreen> {
         Container(
           alignment: Alignment(0,-0.75),
           width: MediaQuery.of(context).size.width*0.6,
-          child: Text(
-            isOpen ? 'Kiki is Open!' : "Kiki is Closed :(",
-            style: TextStyle(color: Colors.white, fontSize: 25, fontWeight: FontWeight.bold),
-          )
+          child: 
+          StreamBuilder(
+                    stream: hoursRef.onValue,
+                    builder: (context, snap) {
+                      if (!snap.hasData) {
+                        
+                        return Text("Loading...");
+
+                      } //Text("Loading...");
+                      else if(snap.data.snapshot.value.toString() == 'Open') {
+                        isOpen = true;
+                          return Text("We're Open!",
+                          style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold));
+                      //return Text("Kiki: We're " + snap.data.snapshot.value.toString() + "!",
+                         // style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold));
+                      }
+                      else{
+                        isOpen = false;
+                          return Text("Sorry, we're closed",
+                          style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold));
+                      }
+
+                    }),
+          
         ), 
          Container(
           alignment: Alignment(0,-0.63),
@@ -106,14 +136,15 @@ class _MainScreenState extends State<MainScreen> {
           alignment: Alignment(0,0.755),
           child: 
            FloatingActionButton(
-             backgroundColor: Colors.red.withOpacity(0),
-             foregroundColor: Colors.red.withOpacity(0),
+             //materialTapTargetSize: ,
+             //backgroundColor: Colors.red.withOpacity(0),
+             //foregroundColor: Colors.red.withOpacity(0),
              onPressed:(){
                setState(() {
                  bannerShown = false; 
                });
              } ,
-             child: Icon(Icons.cancel, color: Colors.redAccent, size: 60),
+             child: Icon(Icons.cancel, color: Colors.white, size: 40),
              
              )
 
@@ -128,7 +159,7 @@ class _MainScreenState extends State<MainScreen> {
      ),
       backgroundColor: Colors.white,
       resizeToAvoidBottomPadding: false,
-      bottomNavigationBar: BottomNavigationBar(
+     /* bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentTab,
         onTap: (index) {
           setState(() {
@@ -144,35 +175,19 @@ class _MainScreenState extends State<MainScreen> {
             ),
             title: Text("Home"),
           ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.pin_drop,
-            ),
-            title: Text("Location"),
-          ),
+         
           BottomNavigationBarItem(
             icon: Icon(
               Icons.shopping_cart,
             ),
-            title: Text("Orders"),
+            title: Text("Cart"),
           ),
           
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.favorite,
-            ),
-            title: Text("Favorite"),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.person,
-            ),
-            title: Text("Profile"),
-          ),
+         
           
         ],
       ),
-      
+      */
      );
     
   }

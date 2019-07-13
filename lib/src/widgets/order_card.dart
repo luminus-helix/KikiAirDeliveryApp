@@ -59,7 +59,9 @@ class _OrderCardState extends State<OrderCard> {
   //int quantity =   0;
 
   if(widget.id == ''){
-  return new Container();
+  return new Card(
+    child: Text('Cart is Empty'),
+  );
   }
   else{
   
@@ -143,10 +145,11 @@ class _OrderCardState extends State<OrderCard> {
                 Text(
                   
                   //"\u01FE 3.0",
-                  ordervalue.toString(), 
+                  r'$' + widget.price.toStringAsFixed(2),
+                  //ordervalue.toString(), 
                   style: TextStyle(
                       fontSize: 16.0,
-                      color: Colors.orangeAccent,
+                      color: Colors.black,
                       fontWeight: FontWeight.bold),
                 ),
                 SizedBox(height: 5.0),

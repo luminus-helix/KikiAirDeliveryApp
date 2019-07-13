@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:food_app_flutter_zone/src/widgets/bought_foods.dart';
+import 'package:food_app_flutter_zone/src/pages/cart_page.dart';
+
 import '../widgets/home_top_info.dart';
-import '../widgets/food_category.dart';
-import '../widgets/search_file.dart';
 import '../models/food_model.dart';
 import 'package:firebase_database/firebase_database.dart';
 
@@ -41,16 +41,10 @@ class _HomePageState extends State<HomePage>{
     //HomeTopInfo();
     return Scaffold(
       appBar: AppBar(
-        title: StreamBuilder(
-                    stream: hoursRef.onValue,
-                    builder: (context, snap) {
-                      if (!snap.hasData) return Text("Loading...");
-                      return Text("Kiki: We're " + snap.data.snapshot.value.toString() + "!",
-                          style: textStyle);
-
+        title: Text('Kiki', style: textStyle),
                       //DataSnapshot snapshot = snap.data.snapshot;
 //List item=[],
-                      var jasonpilot;
+                     // var jasonpilot;
 //it gives all the documents in this list.
                       // jasonpilot=snapshot.value;
 
@@ -58,28 +52,38 @@ class _HomePageState extends State<HomePage>{
 
 //Now we're just checking if document is not null then add it to another list called "item".
 //I faced this problem it works fine without null check until you remove a document and then your stream reads data including the removed one with a null value(if you have some better approach let me know).
-                    }),
+                   // }),
         //const Text('Flutter WebView example'),
         // This drop down menu demonstrates that Flutter widgets can be shown over the web view.
         actions: <Widget>[
+          Container(
+           margin: const EdgeInsets.only(left: 20.0, right: 20.0),
+            child:
+            GestureDetector(
+           onTap: (){
+              Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => CartPage()));
+
+           },
+           child: Icon(
+              Icons.shopping_cart, size: 35
+            ),
+            )
+          ),
           //NavigationControls(_controller.future),
           //SampleMenu(_controller.future),
         ],
       ),
       body: ListView(
-        padding: EdgeInsets.only(top: 20.0, left: 20.0, right: 20.0),
+        padding: EdgeInsets.only(top: 10.0, left: 10.0, right: 10.0),
         children: <Widget>[
          
+      
           //foods.add(),
           //FoodCategory(),
           //SizedBox(height: 20.0,),
           //SearchField(),
           //SizedBox(height: 20.0,),
-          Text("Free Delivery on all Orders!!", style: TextStyle( //wrap this in a container
-                  fontSize: 24.0,
-                  fontWeight: FontWeight.bold,
-                ),),
-          SizedBox(height: 20.0,),
+          
 
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -104,7 +108,7 @@ class _HomePageState extends State<HomePage>{
               ),*/
             ],
           ),
-          SizedBox(height: 20.0),
+          SizedBox(height: 10.0),
           Column(
             children: _foods.map(_buildFoodItems).toList(), //converts the data from foods to a list
           ),

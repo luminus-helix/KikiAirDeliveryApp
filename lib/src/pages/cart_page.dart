@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:food_app_flutter_zone/src/pages/order_page.dart';
-import 'package:food_app_flutter_zone/src/widgets/bought_foods.dart';
+import 'package:food_app_flutter_zone/src/screens/main_screen.dart';
 import '../widgets/order_card.dart';
 import 'package:food_app_flutter_zone/src/data/food_data.dart';
 import 'package:food_app_flutter_zone/src/models/food_model.dart';
+import 'package:food_app_flutter_zone/src/pages/location_page.dart';
+
 //import 'package: package_info/package_info.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:food_app_flutter_zone/src/data/order_data.dart';
@@ -12,7 +14,7 @@ final postPageKey = GlobalKey<_CartPageState>();
 
 //import 'package:cloud_firestore/cloud_firestore.dart';
 final databaseReference = FirebaseDatabase.instance.reference();
-
+var emptystring;
 class CartPage extends StatefulWidget {
   @override
   _CartPageState createState() => _CartPageState();
@@ -143,18 +145,33 @@ List<Food> _currentOrder = currentOrder;
       padding: EdgeInsets.only(
         left: 10.0,
         right: 10.0,
+        bottom:10.0
       ),
       child:
       Column( 
+        mainAxisAlignment: MainAxisAlignment.end, 
         children: <Widget>[
           GestureDetector(
+            
             onTap: () {
-              databaseReference.child("1").set({
-    
-'title': 'Mastering EJB',
-    
-'description': 'Programming Guide for J2EE'});
-              Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => OrderPage()));
+              if (isOpen == true){
+              Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => LocationPage()));
+              }
+              else{
+                return showDialog(
+                      
+                      context: context,
+                      
+                      builder: (context) {
+                        return AlertDialog(
+                          // Retrieve the text the user has entered by using the
+                          // TextEditingController.
+                          content: Text("Sorry, we're closed right now"),
+                        );
+
+              }
+                );
+              }
             },
             child: Container(
               height: 50.0,
@@ -174,8 +191,7 @@ List<Food> _currentOrder = currentOrder;
               ),
             ),
           ),
-          SizedBox(
-            height: 20.0),
+          
          // );
         //],
       //),
@@ -199,10 +215,21 @@ List<Food> _currentOrder = currentOrder;
           ratings: food.ratings, //makes sure to call them inside the widget so can be used later
         ),*/
         if(food.id == ''){
-  return new Container();
+          setState(() {
+                      emptystring = 'Please add items to the cart!';
+
+          });
+         // 'Please add items to the cart!'
+  return new Container(
+    
+   // child: Text(emptystring),
+  );
   }
   else{
-  
+    setState(() {
+          emptystring = '';
+
+    });
     return Card(
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
@@ -293,23 +320,31 @@ List<Food> _currentOrder = currentOrder;
               
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
+              
               children: <Widget>[
-                Text(
+                ConstrainedBox(
+                  constraints: BoxConstraints(maxWidth: 130),
+                  child: 
+                  Text(
                   food.name,
                   style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+                  softWrap: true,
+                  overflow: TextOverflow.fade,
                 ),
+                ),
+                
                 SizedBox(height: 5.0),
                 Text(
                   
                   //"\u01FE 3.0",
-                  ordervalue.toString(), 
+                  r'$' + food.price.toStringAsFixed(2), 
                   style: TextStyle(
                       fontSize: 16.0,
                       color: Colors.orangeAccent,
                       fontWeight: FontWeight.bold),
                 ),
                 SizedBox(height: 5.0),
-                Container(
+               /* Container(
                   height: 25.0,
                   width: 120.0,
                   child: ListView(
@@ -341,7 +376,7 @@ List<Food> _currentOrder = currentOrder;
                       ),
                     ],
                   ),
-                ),
+                ),*/
               ],
             ),
             Spacer(),

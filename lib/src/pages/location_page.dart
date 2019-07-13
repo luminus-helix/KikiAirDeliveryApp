@@ -221,7 +221,7 @@ class _LocationPageState extends State<LocationPage>{
               
               Container(
                  
-                width: 250,
+                width: 290,
                 height: 178,
                 margin: EdgeInsets.fromLTRB(10,0,0,15),
                 padding: EdgeInsets.all(5),
@@ -229,20 +229,31 @@ class _LocationPageState extends State<LocationPage>{
                 child: new Column(
                 
                 mainAxisAlignment: MainAxisAlignment.end,
-                crossAxisAlignment: CrossAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 
 
                 children: [
-                Container(
+                  
+
+                      RaisedButton(onPressed: () {currentLocationButtonPressed();},
+                      color: Colors.green ,
+                      child: Text('Use Current Location', 
+                      style: TextStyle(color: Colors.white,fontSize: 14),),
+                        ),
+                        
+                        
+                         
+                      
+               /* Container(
                  
-                width: 240,
+                width: 200,
                 height: 40,
                 margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(30), color: Colors.green),
-                child: RaisedButton(onPressed: () {currentLocationButtonPressed();},color: Colors.pink[700] ,child: Text('Use Current Location', style: TextStyle(color: Colors.white,fontSize: 18),),
+                child: RaisedButton(onPressed: () {currentLocationButtonPressed();},color: Colors.pink[700] ,child: Text('Use Current Location', style: TextStyle(color: Colors.white,fontSize: 16),),
                 
                 )
-               ),
+                ),*/
                 
 
                 continueButtonShown ? new Row(
@@ -271,7 +282,7 @@ class _LocationPageState extends State<LocationPage>{
                         children: [
                         Container(
                         padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
-                        child: Text('Continue to Payment', style: TextStyle(color: Colors.white, fontSize: 17),),
+                        child: Text('Continue to Payment', style: TextStyle(color: Colors.white, fontSize: 14),),
                         ),
                         Icon(Icons.arrow_forward_ios, color: Colors.white, size: 20)
                         ]
