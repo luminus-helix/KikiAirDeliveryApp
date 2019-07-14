@@ -5,6 +5,8 @@ import 'package:flutter/services.dart';
 import 'package:food_app_flutter_zone/src/pages/order_page.dart';
 import 'package:location/location.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:food_app_flutter_zone/src/widgets/bought_foods.dart';
+import 'package:food_app_flutter_zone/src/data/order_data.dart';
 
 double sendingLat = 000; 
 double sendingLong = 000; 
@@ -66,6 +68,9 @@ class _LocationPageState extends State<LocationPage>{
 
     initPlatformState();
     droneRange.add(Circle(circleId: CircleId('1'),  center: LatLng(41.3083, -72.9279) , radius: 2500, fillColor: Colors.blue.withOpacity(0.2), strokeWidth: 0));
+    for (var i =1; i<currentOrder.length;i++){
+                ordersummary = ordersummary + " " + currentOrder[i].quantity.toString() + "x " + currentOrder[i].name;
+              }
   }
 
   // asink shitq

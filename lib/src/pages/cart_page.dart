@@ -179,10 +179,7 @@ List<Food> _currentOrder = currentOrder;
               else{
                
               Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => LocationPage()));
-               for (var i =1; i<currentOrder.length;i++){
-                ordersummary = ordersummary + " " + currentOrder[i].quantity + "x " + currentOrder[i].name;
-                break;
-              }
+               
               }
 
             
