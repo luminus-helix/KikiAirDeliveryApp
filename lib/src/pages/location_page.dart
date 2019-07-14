@@ -285,25 +285,34 @@ class _LocationPageState extends State<LocationPage>{
                       child: Text('Continue', style: TextStyle(color: Colors.white, fontWeight: FontWeight.normal, fontSize: 15 ),)),
                     */
                   Container(
+                  height: 50,
                    margin: EdgeInsets.all(2),
                    padding: EdgeInsets.all(2),
                    child: 
-                    RaisedButton(
-                      
+
+                   
+                     RaisedButton(
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
 
                       onPressed: () {moveForwardButtonPressed();},
                       elevation: 10, color: Colors.green ,
                       //icon: Icon(Icons.check_circle, color: Colors.white, size: 30),
-                     child: Text('Continue to Payment', style: TextStyle(color: Colors.white, fontSize:14),
+                     child: 
+                     new Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Text('Continue to Payment   ', style: TextStyle(color: Colors.white, fontSize:16, fontWeight: FontWeight.normal)),
+                        Icon(Icons.arrow_forward, color: Colors.white, size: 30),
                       
-                      
-                      
-            
-                       
-                      ) ,
-                     
+                      ]
                      )
-                    )  
+                       
+                     
+                      )
+                     
+                    
+                   )  
                   ]
                   ) : Container(), 
                 
