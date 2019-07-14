@@ -175,6 +175,23 @@ List<Food> _currentOrder = currentOrder;
               }
                  );
               }
+              else if (currentOrder.length ==1){
+                return showDialog(
+                      
+                      context: context,
+                      
+                      builder: (context) {
+                        
+                        return AlertDialog(
+                          // Retrieve the text the user has entered by using the
+                          // TextEditingController.
+                          content: Text("Please add items to cart"),
+                        );
+                        
+
+              }
+                 );
+              }
               
               else{
                
