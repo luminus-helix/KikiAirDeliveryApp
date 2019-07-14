@@ -84,7 +84,7 @@ DEPENDENCIES:
   - Firebase
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
   - firebase_database (from `.symlinks/plugins/firebase_database/ios`)
-  - Flutter (from `.symlinks/flutter/ios-release`)
+  - Flutter (from `.symlinks/flutter/ios`)
   - google_maps_flutter (from `.symlinks/plugins/google_maps_flutter/ios`)
   - location (from `.symlinks/plugins/location/ios`)
   - webview_flutter (from `.symlinks/plugins/webview_flutter/ios`)
@@ -109,7 +109,7 @@ EXTERNAL SOURCES:
   firebase_database:
     :path: ".symlinks/plugins/firebase_database/ios"
   Flutter:
-    :path: ".symlinks/flutter/ios-release"
+    :path: ".symlinks/flutter/ios"
   google_maps_flutter:
     :path: ".symlinks/plugins/google_maps_flutter/ios"
   location:
