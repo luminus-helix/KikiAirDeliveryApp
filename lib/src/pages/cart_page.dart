@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:food_app_flutter_zone/src/pages/order_page.dart';
 import 'package:food_app_flutter_zone/src/screens/main_screen.dart';
 import '../widgets/order_card.dart';
-import 'package:food_app_flutter_zone/src/data/food_data.dart';
+import 'package:food_app_flutter_zone/src/widgets/bought_foods.dart';
 import 'package:food_app_flutter_zone/src/models/food_model.dart';
 import 'package:food_app_flutter_zone/src/pages/location_page.dart';
 
@@ -147,7 +147,7 @@ List<Food> _currentOrder = currentOrder;
       padding: EdgeInsets.only(
         left: 10.0,
         right: 10.0,
-        bottom:10.0
+        bottom: 30.0
       ),
       child:
       Column( 
@@ -156,24 +156,36 @@ List<Food> _currentOrder = currentOrder;
           GestureDetector(
             
             onTap: () {
-              if (isOpen == true){
-              Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => LocationPage()));
-              }
-              else{
-                return showDialog(
+              if (isOpen == false){
+              
+                
+                 return showDialog(
                       
                       context: context,
                       
                       builder: (context) {
+                        
                         return AlertDialog(
                           // Retrieve the text the user has entered by using the
                           // TextEditingController.
-                          content: Text("Sorry, we're closed right now"),
+                          content: Text("Sorry we're closed right now"),
                         );
+                        
 
               }
-                );
+                 );
               }
+              
+              else{
+               
+              Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => LocationPage()));
+               for (var i =1; i<currentOrder.length;i++){
+                ordersummary = ordersummary + " " + currentOrder[i].quantity + "x " + currentOrder[i].name;
+                break;
+              }
+              }
+
+            
             },
             child: Container(
               height: 50.0,

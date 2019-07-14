@@ -108,7 +108,7 @@ class _MainScreenState extends State<MainScreen> {
                       }
                       else{
                         isOpen = false;
-                          return Text("Sorry, we're closed",
+                          return Text("We're closed",
                           style: TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.bold));
                       }
 
