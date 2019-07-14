@@ -57,7 +57,7 @@ class _PaymentPageState extends State<PaymentPage>{
             // Implement navigation to shopping cart page here...
             currentOrder.removeWhere((item) => item.id != "");
             ordervalue = 0;
-            //Navigator.of(context).popUntil((route) => route.isFirst);
+            Navigator.of(context).popUntil((route) => route.isFirst);
 
             print('Shopping cart opened.');
           },
@@ -70,7 +70,7 @@ class _PaymentPageState extends State<PaymentPage>{
       // to allow calling Scaffold.of(context) so we can show a snackbar.
       body: Builder(builder: (BuildContext context) {
         return WebView(
-          initialUrl: 'https://www.paypal.me/kikiair/' + totalorder.toStringAsFixed(2), //adding number adds the specific cart
+          initialUrl: 'https://www.paypal.me/kikiair/' +   (tipvalue+taxvalue+smallorder+servicefee+ordervalue).toStringAsFixed(2), //adding number adds the specific cart
           javascriptMode: JavascriptMode.unrestricted,
           
           onPageFinished: (String url) {

@@ -22,19 +22,10 @@ double ordervalue = 0.00;
 //int quantity = 0;
 double taxvalue = ordervalue*.08;
 double tipvalue = 0.00;
-double smallorder = 1.0;
+double smallorder = 0.0;
 double servicefee = .3 + .03*ordervalue;
-double totalwithtip = ordervalue+taxvalue+smallorder+servicefee;
-double totalorder = ordervalue+taxvalue+smallorder+servicefee;
-void smallorderfee(){
-    if (ordervalue<5.0){
-      smallorder= 1.00;
-    }
-    else 
-    {
-      smallorder = 0.00;
-    }
-}
+
+
 class OrderTotal extends StatefulWidget {
   final String id;
   final String name;
@@ -60,6 +51,10 @@ class OrderTotal extends StatefulWidget {
 }
 
 class _OrderPageState extends State<OrderPage> {
+  //double totalorder = ordervalue+taxvalue+smallorder+servicefee;
+double totalwithtip = ordervalue+taxvalue+smallorder+servicefee;
+   double totalorder = ordervalue+taxvalue+smallorder+servicefee;
+
  bool _toggleVisibility = true;
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
@@ -514,6 +509,7 @@ Widget _buildTipTextField() {
                     fontWeight: FontWeight.bold),
               ),
               //_buildPasswordTextField() ,
+              
               Text(
                 smallorder.toStringAsFixed(2),
                 style: TextStyle(

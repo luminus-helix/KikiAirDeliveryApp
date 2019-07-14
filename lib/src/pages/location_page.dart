@@ -294,7 +294,23 @@ class _LocationPageState extends State<LocationPage>{
                      RaisedButton(
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
 
-                      onPressed: () {moveForwardButtonPressed();},
+                      onPressed: () {
+                        if (ordervalue<5.0){
+                                                        moveForwardButtonPressed();
+
+                             smallorder= 1.00; 
+                              moveForwardButtonPressed();
+
+    }
+    else 
+    {
+      moveForwardButtonPressed();
+        smallorder = 0.00;
+     
+      
+    }
+                        //moveForwardButtonPressed();
+                        },
                       elevation: 10, color: Colors.green ,
                       //icon: Icon(Icons.check_circle, color: Colors.white, size: 30),
                      child: 
