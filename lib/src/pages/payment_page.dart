@@ -21,7 +21,7 @@ class _PaymentPageState extends State<PaymentPage>{
   int currentTab = 0;
   Widget currentPage;
 
-@override
+ @override
   void initState() {
     //final FirebaseDatabase database = FirebaseDatabase
     //    .instance; //Rather then just writing FirebaseDatabase(), get the instance.
@@ -48,20 +48,15 @@ class _PaymentPageState extends State<PaymentPage>{
         // This drop down menu demonstrates that Flutter widgets can be shown over the web view.
         actions: <Widget>[
           
-          /*Container(
-           margin: const EdgeInsets.only(left: 20.0, right: 20.0),
-            child:
-            GestureDetector(
-           onTap: (){
-              //Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => MainScreen()));
-              //runApp( new App());
-              //currentOrder.removeWhere((item) => item.id != "");
-           },
-           child: Icon(
-              Icons.home, size: 35
-            ),
-            )
-          ),*/
+         IconButton(
+          icon: Icon(Icons.shopping_cart),
+          splashColor: Colors.blue,
+          tooltip: 'Open shopping cart',
+          onPressed: () {
+            // Implement navigation to shopping cart page here...
+            print('Shopping cart opened.');
+          },
+        ),
           //NavigationControls(_controller.future),
           //SampleMenu(_controller.future),
         ],

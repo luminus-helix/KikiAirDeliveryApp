@@ -210,12 +210,14 @@ class _BoughtFoodState extends State<BoughtFood> {
                         }*/
               },
               child: 
-              
-              IconButton(
+              InkWell(
+              splashColor: Color(0xff81DAF5),
+              child: 
+              Icon(
                 
-                splashColor: Color(0xff81DAF5),
-                onPressed: (){}, 
-                icon: Icon(Icons.add,
+                //splashColor: Color(0xff81DAF5),
+                //onPressed: (){}, 
+                Icons.add,
                 color: Colors.black, 
                 size:30,)
               ),
