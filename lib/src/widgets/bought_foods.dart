@@ -39,7 +39,8 @@ class _BoughtFoodState extends State<BoughtFood> {
         padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
         child: Row(
           mainAxisSize: MainAxisSize.max,
-          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             
             Container(
@@ -125,10 +126,12 @@ class _BoughtFoodState extends State<BoughtFood> {
               ],
             ),
             Spacer(),
+            
             GestureDetector(
+              //backgroundColor: Color(0xff81DAF5),
               onTap: () {
                 //
-                        //Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (BuildContext context) => OrderPage()));
+                      //Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (BuildContext context) => OrderPage()));
                         //ordervalue = ordervalue +   widget.price; //should be the cost of the item
                         //ordersummary = ordersummary + widget.name;
                         var newitem = Food(
@@ -206,9 +209,15 @@ class _BoughtFoodState extends State<BoughtFood> {
                           //ordervalue = ordervalue+widget.price;
                         }*/
               },
-              child: Icon(
-                Icons.add,
-                color: Colors.black, size:30,
+              child: 
+              
+              IconButton(
+                
+                splashColor: Color(0xff81DAF5),
+                onPressed: (){}, 
+                icon: Icon(Icons.add,
+                color: Colors.black, 
+                size:30,)
               ),
             ),
           ],
