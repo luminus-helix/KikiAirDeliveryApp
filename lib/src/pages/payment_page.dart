@@ -49,11 +49,16 @@ class _PaymentPageState extends State<PaymentPage>{
         actions: <Widget>[
           
          IconButton(
-          icon: Icon(Icons.shopping_cart),
+          icon: Icon(Icons.home),
+          iconSize: 30,
           splashColor: Colors.blue,
           tooltip: 'Open shopping cart',
           onPressed: () {
             // Implement navigation to shopping cart page here...
+            currentOrder.removeWhere((item) => item.id != "");
+            ordervalue = 0;
+            Navigator.of(context).popUntil((route) => route.isFirst);
+
             print('Shopping cart opened.');
           },
         ),
