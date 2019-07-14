@@ -195,6 +195,7 @@ class _LocationPageState extends State<LocationPage>{
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
           title: Text("Tap for Dropoff Location"),
@@ -231,27 +232,30 @@ class _LocationPageState extends State<LocationPage>{
               
               Container(
                  
-                width: 290,
+                width: MediaQuery.of(context).size.width*0.7,
                 height: 178,
-                margin: EdgeInsets.fromLTRB(10,0,0,15),
+                margin: EdgeInsets.fromLTRB(10,0,0,20),
                 padding: EdgeInsets.all(5),
                 //decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: Colors.green[400]),
                 child: new Column(
                 
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.start,
-                
+             
 
                 children: [
                   
-
-                      RaisedButton(onPressed: () {currentLocationButtonPressed();},
-                      color: Colors.green ,
-                      child: Text('Use Current Location', 
-                      style: TextStyle(color: Colors.white,fontSize: 14),),
+                   Container(
+                     margin: EdgeInsets.all(2),
+                     padding: EdgeInsets.all(2),
+                     child:
+                      FloatingActionButton.extended(onPressed: () {currentLocationButtonPressed();},
+                      backgroundColor: Color(0xff81DAF5) ,
+                      label: Text('Use Current Location', 
+                      style: TextStyle(color: Colors.white,fontSize: 16),),
                         ),
                         
-                        
+                   ),
                          
                       
                /* Container(
@@ -280,29 +284,29 @@ class _LocationPageState extends State<LocationPage>{
                       color: Colors.green , 
                       child: Text('Continue', style: TextStyle(color: Colors.white, fontWeight: FontWeight.normal, fontSize: 15 ),)),
                     */
-                    
-                    
+                  Container(
+                   margin: EdgeInsets.all(2),
+                   padding: EdgeInsets.all(2),
+                   child: 
                     RaisedButton(
+                      
 
                       onPressed: () {moveForwardButtonPressed();},
-                      elevation: 10, color: Colors.green , 
-                      child: new Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                        Container(
-                        padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
-                        child: Text('Continue to Payment', style: TextStyle(color: Colors.white, fontSize: 14),),
-                        ),
-                        Icon(Icons.arrow_forward_ios, color: Colors.white, size: 20)
-                        ]
-                        ) 
-                     ) 
-                     ,
+                      elevation: 10, color: Colors.green ,
+                      //icon: Icon(Icons.check_circle, color: Colors.white, size: 30),
+                     child: Text('Continue to Payment', style: TextStyle(color: Colors.white, fontSize:14),
                       
+                      
+                      
+            
+                       
+                      ) ,
+                     
+                     )
+                    )  
                   ]
                   ) : Container(), 
-
+                
                   
                 ]
                 )
@@ -324,23 +328,7 @@ class _LocationPageState extends State<LocationPage>{
                )
               )*/ 
 
-              Align(alignment: Alignment.topLeft,child:  //current location status
-              Container(child: 
-                
-                /*new Text(_currentLocation != null
-                 ? ' \n ${_currentLocation.latitude} , ${_currentLocation.longitude} '
-                 : 'Error: $error\n', textAlign: TextAlign.left),*/
-
-                 new Text(sendingLat.toString() + sendingLong.toString(), textAlign: TextAlign.left), 
-                 
-                width: 240,
-                height: 100,
-                margin: EdgeInsets.fromLTRB(5, 5, 5,5),
-                
-                
-                
-                )
-               )
+             
              ]
 
            

@@ -126,8 +126,14 @@ class _BoughtFoodState extends State<BoughtFood> {
               ],
             ),
             Spacer(),
-            
-            GestureDetector(
+            Container(
+            width: 50,
+            height: 50,
+            decoration: BoxDecoration( borderRadius: BorderRadius.circular(20)),
+            child: 
+            InkWell(
+              splashColor: Color(0xff81DAF5),
+              borderRadius: BorderRadius.circular(25),
               //backgroundColor: Color(0xff81DAF5),
               onTap: () {
                 //
@@ -209,9 +215,7 @@ class _BoughtFoodState extends State<BoughtFood> {
                           //ordervalue = ordervalue+widget.price;
                         }*/
               },
-              child: 
-              InkWell(
-              splashColor: Color(0xff81DAF5),
+              
               child: 
               Icon(
                 
@@ -222,6 +226,7 @@ class _BoughtFoodState extends State<BoughtFood> {
                 size:30,)
               ),
             ),
+            
           ],
         ),
       ),

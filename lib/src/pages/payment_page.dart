@@ -57,7 +57,7 @@ class _PaymentPageState extends State<PaymentPage>{
             // Implement navigation to shopping cart page here...
             currentOrder.removeWhere((item) => item.id != "");
             ordervalue = 0;
-            Navigator.of(context).popUntil((route) => route.isFirst);
+            //Navigator.of(context).popUntil((route) => route.isFirst);
 
             print('Shopping cart opened.');
           },
