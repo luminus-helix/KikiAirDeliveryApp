@@ -9,6 +9,8 @@ import 'package:food_app_flutter_zone/src/pages/home_page.dart';
 import 'package:food_app_flutter_zone/src/data/order_data.dart';
 import 'package:food_app_flutter_zone/src/screens/main_screen.dart';
 import 'package:food_app_flutter_zone/src/app.dart';
+import 'package:firebase_database/firebase_database.dart';
+
 
 class PaymentPage extends StatefulWidget{
   @override
@@ -16,14 +18,31 @@ class PaymentPage extends StatefulWidget{
 }
 
 class _PaymentPageState extends State<PaymentPage>{
+  
+
+  //var paypallink;
   HomePage homePage;
   PaymentPage paymentPage;
     List<Widget> pages;
   int currentTab = 0;
+  
   Widget currentPage;
+  
+
 
  @override
   void initState() {
+  
+
+  /*FirebaseDatabase.instance
+  .reference()
+  .child('paylink')
+  .once()
+  .then((DataSnapshot snapshot){
+    paypallink = snapshot.value.toString();
+    print(paypallink);
+  });*/
+ 
     ordersummary ='';
     
     //final FirebaseDatabase database = FirebaseDatabase
@@ -73,9 +92,12 @@ class _PaymentPageState extends State<PaymentPage>{
       ),
       // We're using a Builder here so we have a context that is below the Scaffold
       // to allow calling Scaffold.of(context) so we can show a snackbar.
-      body: Builder(builder: (BuildContext context) {
+      body: 
+      
+      
+      Builder(builder: (BuildContext context) {
         return WebView(
-          initialUrl: 'https://www.paypal.me/kikiair/' +   (tipvalue+taxvalue+smallorder+servicefee+ordervalue).toStringAsFixed(2), //adding number adds the specific cart
+          initialUrl:paypallink +   (tipvalue+taxvalue+smallorder+servicefee+ordervalue).toStringAsFixed(2), //adding number adds the specific cart
           javascriptMode: JavascriptMode.unrestricted,
           
           onPageFinished: (String url) {

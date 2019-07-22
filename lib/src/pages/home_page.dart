@@ -203,7 +203,7 @@ class _HomePageState extends State<HomePage>{
            
           Row(
             mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
               Text(
                 "View Cart", //subtotal
@@ -213,7 +213,7 @@ class _HomePageState extends State<HomePage>{
                     fontWeight: FontWeight.normal),
               ),
               SizedBox(
-                width:50,
+                width:10,
               ),
               Text(
                 

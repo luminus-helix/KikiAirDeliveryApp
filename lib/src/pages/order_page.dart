@@ -14,7 +14,7 @@ import '../models/food_model.dart';
 
 //import 'package:cloud_firestore/cloud_firestore.dart';
 final databaseReference = FirebaseDatabase.instance.reference();
-
+var paypallink;
 class OrderPage extends StatefulWidget {
   @override
   _OrderPageState createState() => _OrderPageState();
@@ -98,14 +98,14 @@ double totalwithtip = ordervalue+taxvalue+smallorder+servicefee;
       controller: nameController,
       textAlign: TextAlign.start,
       textDirection: TextDirection.ltr,
-     /* decoration: InputDecoration(
+      decoration: InputDecoration(
         hintText: "Full Name",
         errorText: validateName(nameController.text),
         hintStyle: TextStyle(
           color: Color(0xFFBDC2CB),
           fontSize: 18.0,
         ),
-      ),*/
+      ),
       onChanged: (v) => nameController.text = v,
     
     );
@@ -161,9 +161,25 @@ Widget _buildTipTextField() {
   }
   
   List<Food> _currentOrder = currentOrder;
-
+  
+@override
+  void initState() {
   
 
+  FirebaseDatabase.instance
+  .reference()
+  .child('paylink')
+  .once()
+  .then((DataSnapshot snapshot){
+    paypallink = snapshot.value.toString();
+    print(paypallink);
+  });
+ 
+    ordersummary ='';
+    
+   
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

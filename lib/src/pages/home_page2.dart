@@ -160,6 +160,7 @@ setState(() {
             SizedBox(
               width: 500.0,
               child: CupertinoSegmentedControl<int>(
+                //color
                 children: logoWidgets,
                 onValueChanged: (int val) {
                   setState(() {
@@ -250,8 +251,9 @@ setState(() {
            
           Row(
             mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
+              
               Text(
                 "View Cart", //subtotal
                 style: TextStyle(
@@ -260,7 +262,7 @@ setState(() {
                     fontWeight: FontWeight.normal),
               ),
               SizedBox(
-                width:50,
+                width:70,
               ),
               Text(
                 
@@ -271,6 +273,7 @@ setState(() {
                     fontSize: 25.0,
                     fontWeight: FontWeight.normal),
               ),
+              
             ],
           ),
             ),
