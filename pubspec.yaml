@@ -17,6 +17,7 @@ environment:
   sdk: ">=2.2.0 <3.0.0"
 
 dependencies:
+  flutter_launcher_icons: ^0.7.2+1
   flutter:
     sdk: flutter
 
@@ -44,8 +45,9 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
+
 flutter_icons:
-  image_path: "assets/images/icon.JPG" 
+  image_path: "assets/images/logo.jpg" 
   ios: true
 
 
@@ -73,6 +75,7 @@ flutter:
    - assets/images/tridentstrawberry.jpg
    - assets/images/tridentspearmint.jpg
    - assets/images/5hour.jpg
+   - assets/images/logo.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.

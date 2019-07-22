@@ -16,44 +16,71 @@ import '../data/food_data.dart';
 // Model 
 import '../models/food_model.dart';
 
-class HomePage extends StatefulWidget{
+class HomePage2 extends StatefulWidget{
   @override
-  _HomePageState createState() => _HomePageState();
+  _HomePageState2 createState() => _HomePageState2();
 }
 
-class _HomePageState extends State<HomePage>{
+class _HomePageState2 extends State<HomePage2>{
+  List<Food> _foods = foods;
+  List<Food> _foods2 = foods2; //= foods;
+  List <Food> _currentfood = foods;
   final Map<int, Widget> logoWidgets = const <int, Widget>{
-    0: Text('Logo 1'),
-    1: Text('Logo 2'),
-    2: Text('Logo 3'),
+    0: Text('Snacks'),
+    1: Text('Essentials'),
+   // 2: Text('Logo 3'),
   };
+
+  final Map <int, List<Food>> foodstuff = <int, List<Food>>{
+    0: foods,
+    1: foods2,
+    //2: foods,
+  };
+  /*final Map<int, Widget> icons = const <int, Widget>{
+    0: _foods2,//.map(_buildFoodItems).toList(), //converts the data from foods to a list
+         
+    1: Center(
+      child: FlutterLogo(
+        colors: Colors.teal,
+        size: 200.0,
+      ),
+    ),
+    2: Center(
+      child: FlutterLogo(
+        colors: Colors.cyan,
+        size: 200.0,
+      ),
+    ),
+  };*/
 
   var sharedValue = 0;
   bool flag = false;
 
-  List<Food> _foods = foods;
-  List<Food> _foods2 = foods2; //= foods;
+  
 
   void makelists(){
-                          for (var i = 0; i<foods.length;i++){
-                          if (foods[i].category == '2'){
-                            //currentOrder[i].quantity+=1;
-                            _foods2.add(
-                          Food(
-                          id: foods[i].id,
-                          name: foods[i].name,
-                          imagePath: foods[i].imagePath,
-                          category: foods[i].category,
-                          price: foods[i].price,
-                          discount: foods[i].discount,
-                          ratings: foods[i].ratings,
-                          quantity: foods[i].quantity,
+                         if (sharedValue == 0){
+                           setState(() {
+                             _currentfood = _foods2;
 
-                        )
-                            );
-                           
-                          }
-                        }                        
+
+                           });
+                         }     
+                         else if (sharedValue == 1){
+                           setState(() {
+                             _currentfood = _foods;
+
+                           });
+//_currentfood = _foods;
+
+                         }     
+                         else{
+setState(() {
+                             _currentfood = _foods2;
+
+
+                           });
+                         }     
   }
   
   final textStyle = TextStyle(fontSize: 32.0, fontWeight: FontWeight.bold);
@@ -125,9 +152,25 @@ class _HomePageState extends State<HomePage>{
         ],
       ),
 
-      body:
-     
-      ListView(
+      body: Column(
+          children: <Widget>[
+            const Padding(
+              padding: EdgeInsets.all(8.0),
+            ),
+            SizedBox(
+              width: 500.0,
+              child: CupertinoSegmentedControl<int>(
+                children: logoWidgets,
+                onValueChanged: (int val) {
+                  setState(() {
+                    sharedValue = val;
+                  });
+                },
+                groupValue: sharedValue,
+              ),
+            ),
+            Expanded(
+              child: ListView(
         //shrinkWrap: true,
         padding: EdgeInsets.only(top: 0.0, left: 0.0, right: 0.0),
         children: <Widget>[
@@ -165,10 +208,14 @@ class _HomePageState extends State<HomePage>{
           ),
          // SizedBox(height: 10.0),
           Column(
-            children: _foods2.map(_buildFoodItems).toList(), //converts the data from foods to a list
+            children: 
+            foodstuff[sharedValue].map(_buildFoodItems).toList(), //converts the data from foods to a list
           ),
         ],
       ),
+            ),
+          ],
+        ),
       bottomNavigationBar: Container(
       height: 80.0,
       color: Color(0xff81DAF5),

@@ -68,9 +68,9 @@ class _LocationPageState extends State<LocationPage>{
 
     initPlatformState();
     droneRange.add(Circle(circleId: CircleId('1'),  center: LatLng(41.3083, -72.9279) , radius: 2500, fillColor: Colors.blue.withOpacity(0.2), strokeWidth: 0));
-    for (var i =1; i<currentOrder.length;i++){
+    /*for (var i =1; i<currentOrder.length;i++){
                 ordersummary = ordersummary + " " + currentOrder[i].quantity.toString() + "x " + currentOrder[i].name;
-              }
+    }*/
   }
 
   // asink shitq

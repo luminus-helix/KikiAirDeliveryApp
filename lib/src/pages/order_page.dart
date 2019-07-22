@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_app_flutter_zone/src/pages/location_page.dart';
 import 'package:food_app_flutter_zone/src/pages/payment_page.dart';
@@ -53,19 +54,36 @@ class OrderTotal extends StatefulWidget {
 class _OrderPageState extends State<OrderPage> {
   //double totalorder = ordervalue+taxvalue+smallorder+servicefee;
 double totalwithtip = ordervalue+taxvalue+smallorder+servicefee;
-   double totalorder = ordervalue+taxvalue+smallorder+servicefee;
+   double totalorder = ordervalue+taxvalue+smallorder+servicefee+tipvalue;
 
  bool _toggleVisibility = true;
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController phoneNumberController = TextEditingController();
   TextEditingController tipController = TextEditingController();
+  var counter = 0;
+  var black = Colors.black;
+  var white = Colors.white;
+  var back1 = Colors.white;
+  var font1 = Colors.black;
+  var back2;
+  var font2;
+
   String validateName(String value) {
       if (value.isEmpty) {
         return "Please fill out";
       }
       return null;
     }
+  void colorswitch(){
+    if (counter == 1){
+      setState(() {
+        back1 = black;
+        font1 = white;
+
+      });
+    }
+  }
   void prefixtext(){
     if (int.parse(tipController.text) <= .50){
       tipController.text = '.50';
@@ -78,17 +96,18 @@ double totalwithtip = ordervalue+taxvalue+smallorder+servicefee;
   Widget _buildNameTextField() {
     return TextField(
       controller: nameController,
-
-      decoration: InputDecoration(
+      textAlign: TextAlign.start,
+      textDirection: TextDirection.ltr,
+     /* decoration: InputDecoration(
         hintText: "Full Name",
         errorText: validateName(nameController.text),
         hintStyle: TextStyle(
           color: Color(0xFFBDC2CB),
           fontSize: 18.0,
         ),
-      ),
+      ),*/
       onChanged: (v) => nameController.text = v,
-
+    
     );
   }
   Widget _buildEmailTextField() {
@@ -390,12 +409,22 @@ Widget _buildTipTextField() {
                   children: <Widget>[
 
             RaisedButton(
-                child: new Text('0.50'),
+                child: new Text('0.50', style: 
+                TextStyle(
+                    color: font1,
+                    //fontSize: 16.0,
+                    //fontWeight: FontWeight.bold),
+                )
+                ),
+                color: back1,
+
                 onPressed: (){
                   setState(() {
+                  counter = 1;
                   tipvalue = .5;
+                  totalorder = ordervalue+taxvalue+smallorder+servicefee+tipvalue; 
                   //totalorder = totalorder +tipvalue;
-                  totalorder = totalorder +.5;
+                  //totalorder = totalorder +.5;
                 });
                 },
             ),
@@ -404,8 +433,9 @@ Widget _buildTipTextField() {
                 onPressed: (){
                   setState(() {
                   tipvalue = .75;
+                  totalorder = ordervalue+taxvalue+smallorder+servicefee+tipvalue; 
                   //totalorder = totalpretip;
-                  totalorder = totalorder +0.75;
+                  //totalorder = totalorder +0.75;
                 });
                 },
             ),
@@ -414,16 +444,19 @@ Widget _buildTipTextField() {
                 onPressed: (){
                   setState(() {
                   tipvalue = 1.00;
-                  //totalorder = totalpretip;
-                  totalorder = totalorder +1.0;
+                  totalorder = ordervalue+taxvalue+smallorder+servicefee+tipvalue;                  //totalorder = totalpretip;
+                  //totalorder = totalorder +1.0;
                   //totalorder = totalorder +tipvalue;
                 });
                 },
             ),
             RaisedButton(
                 child: new Text('Not Now'),
+                //color: ,
+
                 onPressed: (){
                   setState(() {
+                  
                   tipvalue = 0;
                   totalorder = totalwithtip;
                   //totalorder = totalorder +.5;
@@ -576,11 +609,17 @@ Widget _buildTipTextField() {
           ),
           GestureDetector(
             onTap: () {
+              
               //caffoldkey
               //nameController.text.toString().isNotEmpty &&emailController.text.toString().isNotEmpty &&phoneNumberController.text.toString().isNotEmpty
               //)
               if(nameController.text.toString().isNotEmpty &&emailController.text.toString().isNotEmpty &&phoneNumberController.text.toString().isNotEmpty
 ){
+  for (var i =1; i<currentOrder.length;i++){
+                ordersummary = ordersummary + " " + currentOrder[i].quantity.toString() + "x " + currentOrder[i].name;
+                
+               // break;
+              }
               FirebaseDatabase.instance.reference().child("orders").push().set({"name": (nameController.text).toString(),
     'email': emailController.text.toString(), 'number': phoneNumberController.text.toString(),"order": ordersummary, "longitude": sendingLat.toString(), "latitude": sendingLong.toString(), });
               //databaseReference.child("1").set({ 'title': 'Mastering EJB','description': 'Programming Guide for J2EE'});

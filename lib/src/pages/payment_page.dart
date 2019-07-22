@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:food_app_flutter_zone/src/widgets/bought_foods.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:food_app_flutter_zone/src/pages/order_page.dart';
 import 'package:food_app_flutter_zone/src/pages/home_page.dart';
@@ -23,6 +24,8 @@ class _PaymentPageState extends State<PaymentPage>{
 
  @override
   void initState() {
+    ordersummary ='';
+    
     //final FirebaseDatabase database = FirebaseDatabase
     //    .instance; //Rather then just writing FirebaseDatabase(), get the instance.
     //itemRef = database.reference().child('hours');
@@ -43,6 +46,8 @@ class _PaymentPageState extends State<PaymentPage>{
   Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(
+        //new Container(),
+        automaticallyImplyLeading: false,
         title: const Text('Payment'),
         backgroundColor: Color(0xff81DAF5),
         // This drop down menu demonstrates that Flutter widgets can be shown over the web view.

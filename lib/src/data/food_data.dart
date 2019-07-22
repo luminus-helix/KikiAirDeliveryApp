@@ -7,7 +7,7 @@ dynamic foods = [
     id: "3",
     name: "Cheetos",
     imagePath: "assets/images/cheetos.jpg",
-    category: "1",
+    category: "2",
     price: 2.46,
     discount: 33.5,
     ratings: 99.0,
@@ -17,7 +17,7 @@ dynamic foods = [
     id: "4",
     name: "Flamin Hot Cheetos",
     imagePath: "assets/images/hotcheetos.jpg",
-    category: "1",
+    category: "2",
     price: 2.46,
     discount: 33.5,
     ratings: 99.0,
@@ -53,6 +53,9 @@ dynamic foods = [
     ratings: 99.0,
     quantity: 1,
   ),
+];
+dynamic foods2 = [
+
   Food(
     id: "8",
     name: "Jacks Links Jerky",

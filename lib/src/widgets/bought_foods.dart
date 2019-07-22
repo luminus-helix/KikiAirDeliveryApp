@@ -180,7 +180,11 @@ class _BoughtFoodState extends State<BoughtFood> {
                         );
                         //ordersummary = ordersummary + widget.name+ ', ';
                         //addprice();
-                        ordervalue +=widget.price;
+                        setState(() {
+                          ordervalue += widget.price;
+
+                        });
+                        //ordervalue +=widget.price;
                         }
                         else{
                           //ordervalue = ordervalue+widget.price;

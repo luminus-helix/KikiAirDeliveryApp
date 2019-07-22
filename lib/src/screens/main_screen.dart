@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import '../pages/home_page.dart';
+import '../pages/home_page2.dart';
+
 //import '../pages/order_page.dart';
 //import '../pages/location_page.dart';
 //import '../pages/profile_page.dart';
@@ -21,7 +23,7 @@ class _MainScreenState extends State<MainScreen> {
   int currentTab = 0;
   bool bannerShown = true; 
   // Pages
-  HomePage homePage;
+  HomePage2 homePage;
   //OrderPage orderPage;
   //LocationPage locationPage;
   //LocationPage locationPage;
@@ -37,7 +39,7 @@ class _MainScreenState extends State<MainScreen> {
     final FirebaseDatabase database = FirebaseDatabase
         .instance; //Rather then just writing FirebaseDatabase(), get the instance.
     itemRef = database.reference().child('hours');
-    homePage = HomePage();
+    homePage = HomePage2();
     //orderPage = OrderPage();
     //locationPage = LocationPage();
     //paymentPage =PaymentPage();
@@ -67,6 +69,8 @@ class _MainScreenState extends State<MainScreen> {
        alignment: Alignment.center,
        children: <Widget>[
         currentPage,
+        //SizedBox(
+         // height: 50),
         Container(
           alignment: Alignment(0,0.1),
           width: MediaQuery.of(context).size.width*0.94,
@@ -75,19 +79,19 @@ class _MainScreenState extends State<MainScreen> {
           decoration: BoxDecoration(color: Colors.lightBlueAccent.withOpacity(0.95), borderRadius: BorderRadius.circular(20)),
         ),
         Container(
-          alignment: Alignment(0,0.11),
+          alignment: Alignment(0,0),//(0,0.11),
           child: Container (
-          width: MediaQuery.of(context).size.width*0.61,
-          height: MediaQuery.of(context).size.height*0.45,
+          width: MediaQuery.of(context).size.width*0.75, //..61
+          height: MediaQuery.of(context).size.height*0.5,
          decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),color: Colors.white  ),
          child: Image(
             image: AssetImage("assets/images/instructions.png"),
-            width: 0.9*MediaQuery.of(context).size.width,
-            height: 0.9*MediaQuery.of(context).size.height,
+            width: 5.0*MediaQuery.of(context).size.width,
+            height: 5.0*MediaQuery.of(context).size.height, //0.9
           )
          )
         ),
-        Container(
+       /* Container(
           alignment: Alignment(0,-0.695),
           width: MediaQuery.of(context).size.width*0.6,
           child: 
@@ -114,37 +118,37 @@ class _MainScreenState extends State<MainScreen> {
 
                     }),
           
-        ), 
+        ), */
          Container(
-          alignment: Alignment(0,-0.565),
+          alignment: Alignment(0,-0.655), // (0,-0.565),
           width: MediaQuery.of(context).size.width*0.8,
           child: Text(
             r"Free Delivery on Orders Less than $5!",
-            style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.normal),
+            textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
           )
         ), 
-        Container(
+        /*Container(
           alignment: Alignment(0,-0.48),
           width: MediaQuery.of(context).size.width*0.6,
           child: Text(
             "Airdrop Instructions: ",
             style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.normal),
           )
-        ), 
+        ), */
 
         Container(
           alignment: Alignment(0,0.69),
           child: 
-           FloatingActionButton(
+           GestureDetector(
              //materialTapTargetSize: ,
              //backgroundColor: Colors.red.withOpacity(0),
              //foregroundColor: Colors.red.withOpacity(0),
-             onPressed:(){
+             onTap:(){
                setState(() {
                  bannerShown = false; 
                });
              } ,
-             child: Icon(Icons.cancel, color: Colors.white, size: 40),
+             child: Icon(Icons.chevron_right, color: Colors.white, size: 70),
              
              )
 
