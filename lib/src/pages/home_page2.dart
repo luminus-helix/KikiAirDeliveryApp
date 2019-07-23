@@ -219,7 +219,7 @@ setState(() {
         ),
       bottomNavigationBar: Container(
       height: 80.0,
-      color: Color(0xff81DAF5),
+      color: Color(0xff6BC0FC),
       padding: EdgeInsets.only(
         left: 10.0,
         right: 10.0,
@@ -248,23 +248,40 @@ setState(() {
            //     width:200.0,
                 
          //  child:
-           
+         //  
           Row(
             mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              
-              Text(
+             
+             // Expanded(
+              //mainAxisAlignment: MainAxisAlignment.center,
+             // child: Padding(
+             // padding: const EdgeInsets.only(left: 32.0),
+
+             // child: 
+              Container(
+         // alignment: Alignment(0,0.1),
+          width: MediaQuery.of(context).size.width*0.175,
+         // height: MediaQuery.of(context).size.height*0.75,
+          
+         // decoration: BoxDecoration(color: Colors.lightBlueAccent.withOpacity(0.95), borderRadius: BorderRadius.circular(20)),
+        ),
+             Text(
                 "View Cart", //subtotal
                 style: TextStyle(
                     color: Colors.white,
                     fontSize: 25.0,
                     fontWeight: FontWeight.normal),
+                    textAlign: TextAlign.center,
+           //   ),
+            //  ),
               ),
-              SizedBox(
-                width:70,
-              ),
-              Text(
+          
+              
+             
+             
+                  Text(
                 
                  r"$" + ordervalue.toStringAsFixed(2),
                 //"23.0",
@@ -272,13 +289,16 @@ setState(() {
                     color: Colors.white,
                     fontSize: 25.0,
                     fontWeight: FontWeight.normal),
+                    textAlign: TextAlign.right,
               ),
               
+             
+              
             ],
-          ),
+         // ),
             ),
           ),
-          
+          ),
         ],
       ),
       ),

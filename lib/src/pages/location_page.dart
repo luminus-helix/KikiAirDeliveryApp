@@ -183,8 +183,9 @@ class _LocationPageState extends State<LocationPage>{
        sendingLat = finalLat; 
        sendingLong = finalLong; 
      });
-     Navigator.push(context, MaterialPageRoute(builder: (context) => OrderPage() ));
-     
+    // Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => OrderPage()));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => OrderPage() ));
+     //Navigator.pop(context);
     }
      
      //_locationSubscription.cancel(); 
@@ -196,15 +197,34 @@ class _LocationPageState extends State<LocationPage>{
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Tap for Dropoff Location"),
+          leading: IconButton(
+                
+          icon: Icon(Icons.arrow_back_ios),
+          
+          splashColor: Colors.blue,
+          //tooltip: 'Open shopping cart',
+          onPressed: () {
+            
+          Navigator.pop(context);
+            print('Shopping cart opened.');
+          },
+        ),
+          automaticallyImplyLeading: true,
+
           backgroundColor: Color(0xff81DAF5),
           elevation: 20,
           actions: <Widget>
            [
+             
+             ],
+             
               
-           ],
+           
+          title: Text("Tap for Dropoff Location"),
+        
         ),
         body: Stack(
           
@@ -295,7 +315,7 @@ class _LocationPageState extends State<LocationPage>{
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
 
                       onPressed: () {
-                        if (ordervalue<5.0){
+                        if (ordervalue<=5.0){
                                                         moveForwardButtonPressed();
 
                              smallorder= 1.00; 

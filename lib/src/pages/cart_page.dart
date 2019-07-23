@@ -1,3 +1,5 @@
+import 'package:auto_size_text/auto_size_text.dart';
+
 import 'package:flutter/material.dart';
 import 'package:food_app_flutter_zone/src/pages/order_page.dart';
 import 'package:food_app_flutter_zone/src/screens/main_screen.dart';
@@ -5,6 +7,8 @@ import '../widgets/order_card.dart';
 import 'package:food_app_flutter_zone/src/widgets/bought_foods.dart';
 import 'package:food_app_flutter_zone/src/models/food_model.dart';
 import 'package:food_app_flutter_zone/src/pages/location_page.dart';
+//import 'package:';
+
 
 //import 'package: package_info/package_info.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -152,12 +156,35 @@ class _CartPageState extends State<CartPage> {
                   // setState(() {
                   isOpen = false;
                   closedmessage = snap.data.snapshot.value.toString();
-
-                  return Text(
+                  if (ordervalue <=5.0){
+                  return Row(
+                    children: <Widget>[
+                      Expanded(
+                      child: AutoSizeText(
                     r"Reminder: Free Delivery on all orders over $5!",
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 18.0, color: Colors.grey),
-                  );
+                    style: TextStyle(color: Colors.black, fontSize: 500),
+                    maxLines: 1,
+                  )
+                      ),
+                     ]
+                     );
+                  }
+                  else{
+                    return  Row(
+                    children: <Widget>[
+                      Expanded(
+                      child: AutoSizeText(
+                   
+                      r"Congratulations you've qualified for free delivery!!",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(color: Colors.black, fontSize: 199),
+                    maxLines: 1,
+                  )
+                      ),
+                     ]
+                     );
+                  }
                   //    }
                   //   );
                   // });
@@ -168,12 +195,35 @@ class _CartPageState extends State<CartPage> {
                 } else {
                   //setState(() {
                   isOpen = true;
-                  return Text(
+                   if (ordervalue <=5.0){
+                  return Row(
+                    children: <Widget>[
+                      Expanded(
+                      child: AutoSizeText(
                     r"Reminder: Free Delivery on all orders over $5!",
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 18.0, color: Colors.grey),
-                  );
-
+                    style: TextStyle(color: Colors.black, fontSize: 500),
+                    maxLines: 1,
+                  )
+                      ),
+                     ]
+                     );
+                  }
+                  else{
+                    return  Row(
+                    children: <Widget>[
+                      Expanded(
+                      child: AutoSizeText(
+                   
+                      r"Congratulations you've qualified for free delivery!!",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(color: Colors.black, fontSize: 199),
+                    maxLines: 1,
+                  )
+                      ),
+                     ]
+                     );
+                  }
                   //   });
                   // isOpen = true;
                   /// return Text("We're closed",
@@ -181,7 +231,7 @@ class _CartPageState extends State<CartPage> {
                 }
               }),
           SizedBox(
-            height: 10,
+            height: 15,
           ),
           GestureDetector(
             onTap: () {
