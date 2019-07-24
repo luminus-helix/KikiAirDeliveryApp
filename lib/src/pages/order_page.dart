@@ -100,7 +100,7 @@ double totalwithtip = ordervalue+taxvalue+smallorder+servicefee;
       textDirection: TextDirection.ltr,
       decoration: InputDecoration(
         hintText: "Full Name",
-        errorText: validateName(nameController.text),
+        //errorText: validateName(nameController.text),
         hintStyle: TextStyle(
           color: Color(0xFFBDC2CB),
           fontSize: 18.0,
@@ -131,7 +131,7 @@ double totalwithtip = ordervalue+taxvalue+smallorder+servicefee;
       controller: phoneNumberController,
       onChanged: (j) => phoneNumberController.text = j,
       decoration: InputDecoration(
-        errorText: validateName(phoneNumberController.text),
+        //errorText: validateName(phoneNumberController.text),
         //prefixText: ".50",
         hintText: "Phone Number",
         hintStyle: TextStyle(
@@ -242,10 +242,10 @@ Widget _buildTipTextField() {
                     SizedBox(
                       height: 20.0,
                     ),
-                    _buildEmailTextField(),
-                    SizedBox(
+                   // _buildEmailTextField(),
+                    /*SizedBox(
                       height: 20.0,
-                    ),
+                    ),*/
                     _buildPhoneNumberTextField(),
                   ],
                 ),
@@ -299,14 +299,16 @@ Widget _buildTipTextField() {
                 ),
               ],
             ),*/
-            Container(
+           /* Container(
               child:
               _buildTotalContainer(),
-            )
+            )*/
           ],
               //  bottomNavigationBar: _buildTotalContainer(),
         ),
+        
       ),
+      bottomNavigationBar: _buildTotalContainer(),
       /*ListView(
         padding: EdgeInsets.symmetric(horizontal: 10.0),
         scrollDirection: Axis.vertical,
@@ -503,7 +505,7 @@ Widget _buildTipTextField() {
                 "Subtotal", //subtotal
                 style: TextStyle(
                     color: Color(0xFF9BA7C6),
-                    fontSize: 16.0,
+                    fontSize: 20.0,
                     fontWeight: FontWeight.bold),
               ),
               Text(
@@ -511,7 +513,7 @@ Widget _buildTipTextField() {
                 //"23.0",
                 style: TextStyle(
                     color: Color(0xFF6C6D6D),
-                    fontSize: 16.0,
+                    fontSize: 20.0,
                     fontWeight: FontWeight.bold),
               ),
             ],
@@ -529,7 +531,7 @@ Widget _buildTipTextField() {
                 "Tax",
                 style: TextStyle(
                     color: Color(0xFF9BA7C6),
-                    fontSize: 16.0,
+                    fontSize: 20.0,
                     fontWeight: FontWeight.bold),
               ),
               
@@ -537,7 +539,7 @@ Widget _buildTipTextField() {
                 taxvalue.toStringAsFixed(2),
                 style: TextStyle(
                     color: Color(0xFF6C6D6D),
-                    fontSize: 16.0,
+                    fontSize: 20.0,
                     fontWeight: FontWeight.bold),
               ),
               
@@ -554,7 +556,7 @@ Widget _buildTipTextField() {
                 "Small Order Fee", //add discount
                 style: TextStyle(
                     color: Color(0xFF9BA7C6),
-                    fontSize: 16.0,
+                    fontSize: 20.0,
                     fontWeight: FontWeight.bold),
               ),
               //_buildPasswordTextField() ,
@@ -563,7 +565,7 @@ Widget _buildTipTextField() {
                 smallorder.toStringAsFixed(2),
                 style: TextStyle(
                     color: Color(0xFF6C6D6D),
-                    fontSize: 16.0,
+                    fontSize: 20.0,
                     fontWeight: FontWeight.bold),
               ),
             ],

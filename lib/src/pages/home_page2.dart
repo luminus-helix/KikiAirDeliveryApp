@@ -363,7 +363,10 @@ setState(() {
                   style: TextStyle(
                       fontSize: 14.0,
                       color: Colors.black,
-                      fontWeight: FontWeight.normal),
+                      fontWeight: FontWeight.normal,
+                      //fontFamily: ff-
+                      ),
+                      
                 ),
                 SizedBox(height: 5.0),
                /* Container(

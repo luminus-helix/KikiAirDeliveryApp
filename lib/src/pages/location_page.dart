@@ -316,7 +316,7 @@ class _LocationPageState extends State<LocationPage>{
 
                       onPressed: () {
                         if (ordervalue<=5.0){
-                                                        moveForwardButtonPressed();
+                                                       // moveForwardButtonPressed();
 
                              smallorder= 1.00; 
                               moveForwardButtonPressed();
