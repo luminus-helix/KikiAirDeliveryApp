@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../pages/home_page.dart';
+//import '../pages/home_page.dart';
 import '../pages/home_page2.dart';
 
 //import '../pages/order_page.dart';
@@ -79,7 +79,7 @@ class _MainScreenState extends State<MainScreen> {
           decoration: BoxDecoration(color: Colors.lightBlueAccent.withOpacity(0.95), borderRadius: BorderRadius.circular(20)),
         ),
         Container(
-          alignment: Alignment(0,0),//(0,0.11),
+          alignment: Alignment(0,.1),//(0,0.11),
           child: Container (
           width: MediaQuery.of(context).size.width*0.75, //..61
           height: MediaQuery.of(context).size.height*0.5,
@@ -124,7 +124,7 @@ class _MainScreenState extends State<MainScreen> {
           width: MediaQuery.of(context).size.width*0.8,
           child: Text(
             r"Free Delivery on Orders Less than $5!",
-            textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
+            textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontSize: 35, fontWeight: FontWeight.bold),
           )
         ), 
         /*Container(

@@ -20,21 +20,22 @@ class HomePage2 extends StatefulWidget{
   @override
   _HomePageState2 createState() => _HomePageState2();
 }
-
+var bluecolor = Color(0xff6BC0FC);
 class _HomePageState2 extends State<HomePage2>{
-  List<Food> _foods = foods;
-  List<Food> _foods2 = foods2; //= foods;
+  List<Food> _foods = foods2;
+  List<Food> _foods2 = foods; //= foods;
   List <Food> _currentfood = foods;
   final Map<int, Widget> logoWidgets = const <int, Widget>{
-    0: Text('Snacks'),
-    1: Text('Essentials'),
+    0: Text('Candy', style: TextStyle(fontSize: 16)),
+    1: Text('Snacks | Drinks'),
+    2: Text('Essentials'),
    // 2: Text('Logo 3'),
   };
 
   final Map <int, List<Food>> foodstuff = <int, List<Food>>{
-    0: foods,
-    1: foods2,
-    //2: foods,
+    0: foods2,
+    1: foods,
+    2: foods3,
   };
   /*final Map<int, Widget> icons = const <int, Widget>{
     0: _foods2,//.map(_buildFoodItems).toList(), //converts the data from foods to a list
@@ -119,7 +120,7 @@ setState(() {
             ],
 
           ),
-        backgroundColor: Color(0xFF87CEFA),
+        backgroundColor: Color(0xff6BC0FC),
                       //DataSnapshot snapshot = snap.data.snapshot;
 //List item=[],
                      // var jasonpilot;
@@ -159,8 +160,11 @@ setState(() {
             ),
             SizedBox(
               width: 500.0,
+              //height:40,
               child: CupertinoSegmentedControl<int>(
                 //color
+                selectedColor: bluecolor,
+                borderColor: bluecolor,
                 children: logoWidgets,
                 onValueChanged: (int val) {
                   setState(() {
@@ -218,8 +222,8 @@ setState(() {
           ],
         ),
       bottomNavigationBar: Container(
-      height: 80.0,
-      color: Color(0xff6BC0FC),
+      height: 60.0,
+      color: bluecolor,//Color(0xff6BC0FC),
       padding: EdgeInsets.only(
         left: 10.0,
         right: 10.0,
@@ -235,7 +239,8 @@ setState(() {
             child: Container(
            // mainAxisSize: MainAxisSize.max,
            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            height:40.0,
+            height:50.0,
+            //padding: EdgeInsets.all(10.0),
             child:
               /*Text(
                 "Tip",
@@ -249,31 +254,45 @@ setState(() {
                 
          //  child:
          //  
-          Row(
+         Column( children: <Widget>[
+Row(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: <Widget>[
-             
+            // Padding(
+               
              // Expanded(
               //mainAxisAlignment: MainAxisAlignment.center,
              // child: Padding(
              // padding: const EdgeInsets.only(left: 32.0),
 
              // child: 
-              Container(
+            /*  Container(
          // alignment: Alignment(0,0.1),
-          width: MediaQuery.of(context).size.width*0.175,
+          width: MediaQuery.of(context).size.width*0.17,
          // height: MediaQuery.of(context).size.height*0.75,
           
          // decoration: BoxDecoration(color: Colors.lightBlueAccent.withOpacity(0.95), borderRadius: BorderRadius.circular(20)),
-        ),
+              ),*/
+          Text(
+                
+                 r"$" + ordervalue.toStringAsFixed(2),
+                //"23.0",
+                style: TextStyle(
+                    color: Color(0xff6BC0FC),
+                    fontSize: 25.0,
+                    fontWeight: FontWeight.normal),
+                    //textAlign: TextAlign.end,
+              ),
+
              Text(
                 "View Cart", //subtotal
                 style: TextStyle(
                     color: Colors.white,
-                    fontSize: 25.0,
-                    fontWeight: FontWeight.normal),
-                    textAlign: TextAlign.center,
+                    fontSize: 35.0,
+                    fontWeight: FontWeight.bold),
+                    //textAlign: TextAlign.center,
            //   ),
             //  ),
               ),
@@ -289,7 +308,7 @@ setState(() {
                     color: Colors.white,
                     fontSize: 25.0,
                     fontWeight: FontWeight.normal),
-                    textAlign: TextAlign.right,
+                    //textAlign: TextAlign.end,
               ),
               
              
@@ -297,6 +316,11 @@ setState(() {
             ],
          // ),
             ),
+            SizedBox(
+              height:.0,
+            )
+         ],)
+          
           ),
           ),
         ],
@@ -349,7 +373,7 @@ setState(() {
                   child: 
                   Text(
                   food.name,
-                  style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize:20.0, fontWeight: FontWeight.bold),
                   softWrap: true,
                   overflow: TextOverflow.fade,
                 ),
@@ -361,9 +385,10 @@ setState(() {
                   //"\u01FE 3.0",
                   r'$' + food.price.toStringAsFixed(2), 
                   style: TextStyle(
-                      fontSize: 14.0,
-                      color: Colors.black,
+                      fontSize: 18.0,
+                      color: Colors.black54,
                       fontWeight: FontWeight.normal,
+                      
                       //fontFamily: ff-
                       ),
                       
@@ -506,7 +531,7 @@ setState(() {
                 //onPressed: (){}, 
                 Icons.add,
                 color: Colors.black, 
-                size:30,)
+                size:35,)
               ),
             ),
             

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:food_app_flutter_zone/src/pages/order_page.dart';
 import 'package:food_app_flutter_zone/src/screens/main_screen.dart';
 import '../widgets/order_card.dart';
-import 'package:food_app_flutter_zone/src/widgets/bought_foods.dart';
+import 'package:food_app_flutter_zone/src/pages/home_page2.dart';
 import 'package:food_app_flutter_zone/src/models/food_model.dart';
 import 'package:food_app_flutter_zone/src/pages/location_page.dart';
 //import 'package:';
@@ -14,6 +14,8 @@ import 'package:food_app_flutter_zone/src/pages/location_page.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:food_app_flutter_zone/src/data/order_data.dart';
 import '../models/food_model.dart';
+var bluecolor = Color(0xff6BC0FC);
+
 
 final postPageKey = GlobalKey<_CartPageState>();
 
@@ -64,11 +66,11 @@ class _CartPageState extends State<CartPage> {
       key: postPageKey,
       appBar: AppBar(
         title: Text(
-          "Your Food Cart",
+          "Your Cart",
           style: TextStyle(
               color: Colors.white, fontSize: 32, fontWeight: FontWeight.bold),
         ),
-        backgroundColor: Color(0xff81DAF5),
+        backgroundColor: bluecolor, //Color(0xff81DAF5),
         elevation: 0.0,
         centerTitle: true,
       ),
@@ -176,7 +178,7 @@ class _CartPageState extends State<CartPage> {
                       Expanded(
                       child: AutoSizeText(
                    
-                      r"Congratulations you've qualified for free delivery!!",
+                      r"Congratulations, you've qualified for free delivery!",
                     textAlign: TextAlign.center,
                     style: TextStyle(color: Colors.black, fontSize: 199),
                     maxLines: 1,
@@ -264,7 +266,7 @@ class _CartPageState extends State<CartPage> {
             child: Container(
               height: 50.0,
               decoration: BoxDecoration(
-                color: Theme.of(context).primaryColor,
+                color: bluecolor,//Theme.of(context).primaryColor,
                 borderRadius: BorderRadius.circular(35.0),
               ),
               child: Center(
@@ -272,7 +274,7 @@ class _CartPageState extends State<CartPage> {
                   "Proceed To Checkout",
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 18.0,
+                    fontSize: 30.0,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -407,7 +409,7 @@ class _CartPageState extends State<CartPage> {
                     child: Text(
                       food.name,
                       style: TextStyle(
-                          fontSize: 16.0, fontWeight: FontWeight.bold),
+                          fontSize: 20.0, fontWeight: FontWeight.bold),
                       softWrap: true,
                       overflow: TextOverflow.fade,
                     ),
@@ -417,8 +419,8 @@ class _CartPageState extends State<CartPage> {
                     //"\u01FE 3.0",
                     r'$' + food.price.toStringAsFixed(2),
                     style: TextStyle(
-                        fontSize: 16.0,
-                        color: Colors.black,
+                        fontSize: 18.0,
+                        color: Colors.black54,
                         fontWeight: FontWeight.normal),
                   ),
                   SizedBox(height: 5.0),

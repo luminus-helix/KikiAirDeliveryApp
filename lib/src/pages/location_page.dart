@@ -1,5 +1,7 @@
 
 import 'dart:async';
+import 'package:auto_size_text/auto_size_text.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:food_app_flutter_zone/src/pages/order_page.dart';
@@ -10,6 +12,7 @@ import 'package:food_app_flutter_zone/src/data/order_data.dart';
 
 double sendingLat = 000; 
 double sendingLong = 000; 
+var bluecolor = Color(0xff6BC0FC);
 
 class LocationPage extends StatefulWidget{
   @override
@@ -202,7 +205,7 @@ class _LocationPageState extends State<LocationPage>{
         appBar: AppBar(
           leading: IconButton(
                 
-          icon: Icon(Icons.arrow_back_ios),
+          icon: Icon(Icons.arrow_back_ios, color:Colors.black),
           
           splashColor: Colors.blue,
           //tooltip: 'Open shopping cart',
@@ -214,7 +217,7 @@ class _LocationPageState extends State<LocationPage>{
         ),
           automaticallyImplyLeading: true,
 
-          backgroundColor: Color(0xff81DAF5),
+          backgroundColor: bluecolor,//Color(0xff81DAF5),
           elevation: 20,
           actions: <Widget>
            [
@@ -223,7 +226,7 @@ class _LocationPageState extends State<LocationPage>{
              
               
            
-          title: Text("Tap for Dropoff Location"),
+          title: Text("Choose Location in Circle", style: TextStyle(fontSize: 27, fontWeight: FontWeight.bold )),
         
         ),
         body: Stack(
@@ -252,7 +255,7 @@ class _LocationPageState extends State<LocationPage>{
               
               Container(
                  
-                width: MediaQuery.of(context).size.width*0.7,
+                width: MediaQuery.of(context).size.width*0.75,
                 height: 178,
                 margin: EdgeInsets.fromLTRB(10,0,0,20),
                 padding: EdgeInsets.all(5),
@@ -270,9 +273,9 @@ class _LocationPageState extends State<LocationPage>{
                      padding: EdgeInsets.all(2),
                      child:
                       FloatingActionButton.extended(onPressed: () {currentLocationButtonPressed();},
-                      backgroundColor: Color(0xff81DAF5) ,
+                      backgroundColor: bluecolor,//(0xff81DAF5) ,
                       label: Text('Use Current Location', 
-                      style: TextStyle(color: Colors.white,fontSize: 16),),
+                      style: TextStyle(color: Colors.white,fontSize: 18),),
                         ),
                         
                    ),
@@ -331,14 +334,14 @@ class _LocationPageState extends State<LocationPage>{
     }
                         //moveForwardButtonPressed();
                         },
-                      elevation: 10, color: Colors.green ,
+                      elevation: 10, color: bluecolor,//Colors.green ,
                       //icon: Icon(Icons.check_circle, color: Colors.white, size: 30),
                      child: 
                      new Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Text('Continue to Payment   ', style: TextStyle(color: Colors.white, fontSize:16, fontWeight: FontWeight.normal)),
+                        Text('Finalize Order   ', style: TextStyle(color: Colors.white, fontSize:20, fontWeight: FontWeight.normal)),
                         Icon(Icons.arrow_forward, color: Colors.white, size: 30),
                       
                       ]

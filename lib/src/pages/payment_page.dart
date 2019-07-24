@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:food_app_flutter_zone/src/widgets/bought_foods.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:food_app_flutter_zone/src/pages/order_page.dart';
-import 'package:food_app_flutter_zone/src/pages/home_page.dart';
+import 'package:food_app_flutter_zone/src/pages/home_page2.dart';
 import 'package:food_app_flutter_zone/src/data/order_data.dart';
 import 'package:food_app_flutter_zone/src/screens/main_screen.dart';
 import 'package:food_app_flutter_zone/src/app.dart';
@@ -21,7 +21,7 @@ class _PaymentPageState extends State<PaymentPage>{
   
 
   //var paypallink;
-  HomePage homePage;
+  HomePage2 homePage;
   PaymentPage paymentPage;
     List<Widget> pages;
   int currentTab = 0;
@@ -48,7 +48,7 @@ class _PaymentPageState extends State<PaymentPage>{
     //final FirebaseDatabase database = FirebaseDatabase
     //    .instance; //Rather then just writing FirebaseDatabase(), get the instance.
     //itemRef = database.reference().child('hours');
-    homePage = HomePage();
+    homePage = HomePage2();
     paymentPage = PaymentPage();
     //orderPage = OrderPage();
     //locationPage = LocationPage();
@@ -67,13 +67,13 @@ class _PaymentPageState extends State<PaymentPage>{
       appBar: AppBar(
         //new Container(),
         automaticallyImplyLeading: false,
-        title: const Text('Payment'),
-        backgroundColor: Color(0xff81DAF5),
+        title: const Text('Payment via PayPal', style: TextStyle(fontSize: 30, color: Colors.white)),
+        backgroundColor: bluecolor,//Color(0xff81DAF5),
         // This drop down menu demonstrates that Flutter widgets can be shown over the web view.
         actions: <Widget>[
           
          IconButton(
-          icon: Icon(Icons.home),
+          icon: Icon(Icons.home, color: Colors.white),
           iconSize: 30,
           splashColor: Colors.blue,
           tooltip: 'Open shopping cart',

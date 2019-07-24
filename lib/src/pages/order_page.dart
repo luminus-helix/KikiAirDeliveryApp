@@ -55,6 +55,7 @@ class _OrderPageState extends State<OrderPage> {
   //double totalorder = ordervalue+taxvalue+smallorder+servicefee;
 double totalwithtip = ordervalue+taxvalue+smallorder+servicefee;
    double totalorder = ordervalue+taxvalue+smallorder+servicefee+tipvalue;
+var bluecolor = Color(0xff6BC0FC);
 
  bool _toggleVisibility = true;
   TextEditingController nameController = TextEditingController();
@@ -92,14 +93,26 @@ double totalwithtip = ordervalue+taxvalue+smallorder+servicefee;
 
     }
   }
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is removed from the
+    // widget tree.
+    nameController.dispose();
+    phoneNumberController.dispose();
+    super.dispose();
+  }
 
   Widget _buildNameTextField() {
     return TextField(
       controller: nameController,
       textAlign: TextAlign.start,
       textDirection: TextDirection.ltr,
+      autocorrect: false,
+      autofocus:true,
+
       decoration: InputDecoration(
         hintText: "Full Name",
+        
         //errorText: validateName(nameController.text),
         hintStyle: TextStyle(
           color: Color(0xFFBDC2CB),
@@ -129,7 +142,10 @@ double totalwithtip = ordervalue+taxvalue+smallorder+servicefee;
   Widget _buildPhoneNumberTextField() {
     return TextField(
       controller: phoneNumberController,
-      onChanged: (j) => phoneNumberController.text = j,
+      keyboardType: TextInputType.number,
+      onChanged: (j) =>  phoneNumberController.text = j,
+      autocorrect: false,
+      autofocus:true,
       decoration: InputDecoration(
         //errorText: validateName(phoneNumberController.text),
         //prefixText: ".50",
@@ -188,9 +204,11 @@ Widget _buildTipTextField() {
           "Checkout",
           style: TextStyle(
             color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 30,
           ),
         ),
-        backgroundColor: Color(0xff81DAF5),
+        backgroundColor: bluecolor,//Color(0xff81DAF5),
         elevation: 0.0,
         centerTitle: true,
       ),
@@ -366,7 +384,7 @@ Widget _buildTipTextField() {
   Widget _buildTotalContainer() {
     return 
     Container(
-      height: 400.0,
+      height: 360.0,
       padding: EdgeInsets.only(
         left: 10.0,
         right: 10.0,
@@ -382,7 +400,7 @@ Widget _buildTipTextField() {
                 "Tip your pilot now?",
                 style: TextStyle(
                     color: Color(0xFF9BA7C6),
-                    fontSize: 16.0,
+                    fontSize: 20.0,
                     fontWeight: FontWeight.bold),
               ),
               
@@ -427,10 +445,10 @@ Widget _buildTipTextField() {
                   children: <Widget>[
 
             RaisedButton(
-                child: new Text('0.50', style: 
+                child: new Text(r'$0.50', style: 
                 TextStyle(
-                    color: font1,
-                    //fontSize: 16.0,
+                    //color: font1,
+                    fontSize: 16.0,
                     //fontWeight: FontWeight.bold),
                 )
                 ),
@@ -447,7 +465,7 @@ Widget _buildTipTextField() {
                 },
             ),
             RaisedButton(
-                child: new Text('0.75'),
+                child: new Text(r'$0.75',style:TextStyle(fontSize:16)),
                 onPressed: (){
                   setState(() {
                   tipvalue = .75;
@@ -458,7 +476,7 @@ Widget _buildTipTextField() {
                 },
             ),
              RaisedButton(
-                child: new Text('1.00'),
+                child: new Text(r'$1.00',style:TextStyle(fontSize:16)),
                 onPressed: (){
                   setState(() {
                   tipvalue = 1.00;
@@ -469,7 +487,7 @@ Widget _buildTipTextField() {
                 },
             ),
             RaisedButton(
-                child: new Text('Not Now'),
+                child: new Text('Not Now',style:TextStyle(fontSize:16)),
                 //color: ,
 
                 onPressed: (){
@@ -509,7 +527,7 @@ Widget _buildTipTextField() {
                     fontWeight: FontWeight.bold),
               ),
               Text(
-                ordervalue.toStringAsFixed(2),
+                r'$' +ordervalue.toStringAsFixed(2),
                 //"23.0",
                 style: TextStyle(
                     color: Color(0xFF6C6D6D),
@@ -536,7 +554,7 @@ Widget _buildTipTextField() {
               ),
               
               Text(
-                taxvalue.toStringAsFixed(2),
+                r'$' +taxvalue.toStringAsFixed(2),
                 style: TextStyle(
                     color: Color(0xFF6C6D6D),
                     fontSize: 20.0,
@@ -562,7 +580,7 @@ Widget _buildTipTextField() {
               //_buildPasswordTextField() ,
               
               Text(
-                smallorder.toStringAsFixed(2),
+                r'$' +smallorder.toStringAsFixed(2),
                 style: TextStyle(
                     color: Color(0xFF6C6D6D),
                     fontSize: 20.0,
@@ -578,17 +596,17 @@ Widget _buildTipTextField() {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Text(
-                "Service Fee",
+                "PayPal Transaction",
                 style: TextStyle(
                     color: Color(0xFF9BA7C6),
-                    fontSize: 16.0,
+                    fontSize: 20.0,
                     fontWeight: FontWeight.bold),
               ),
               Text(
-                servicefee.toStringAsFixed(2),
+                r'$' +servicefee.toStringAsFixed(2),
                 style: TextStyle(
                     color: Color(0xFF6C6D6D),
-                    fontSize: 16.0,
+                    fontSize: 20.0,
                     fontWeight: FontWeight.bold),
               ),
             ],
@@ -599,9 +617,7 @@ Widget _buildTipTextField() {
           Divider(
             height: 2.0,
           ),
-          SizedBox(
-            height: 20.0,
-          ),
+          
           Row(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -610,14 +626,14 @@ Widget _buildTipTextField() {
                 "Cart Total",
                 style: TextStyle(
                     color: Color(0xFF9BA7C6),
-                    fontSize: 16.0,
+                    fontSize: 20.0,
                     fontWeight: FontWeight.bold),
               ),
               Text(
-                totalorder.toStringAsFixed(2),
+                r'$' +totalorder.toStringAsFixed(2),
                 style: TextStyle(
                     color: Color(0xFF6C6D6D),
-                    fontSize: 16.0,
+                    fontSize: 20.0,
                     fontWeight: FontWeight.bold),
               ),
             ],
@@ -631,8 +647,7 @@ Widget _buildTipTextField() {
               //caffoldkey
               //nameController.text.toString().isNotEmpty &&emailController.text.toString().isNotEmpty &&phoneNumberController.text.toString().isNotEmpty
               //)
-              if(nameController.text.toString().isNotEmpty &&emailController.text.toString().isNotEmpty &&phoneNumberController.text.toString().isNotEmpty
-){
+              if(nameController.text.toString().isNotEmpty &&phoneNumberController.text.toString().isNotEmpty){
   for (var i =1; i<currentOrder.length;i++){
                 ordersummary = ordersummary + " " + currentOrder[i].quantity.toString() + "x " + currentOrder[i].name;
                 
@@ -670,7 +685,7 @@ return showDialog(
                   "Proceed To Payment",
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 18.0,
+                    fontSize: 30.0,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -678,7 +693,7 @@ return showDialog(
             ),
           ),
           SizedBox(
-            height: 40.0,
+            height: 20.0,
           ),
         ],
       ),

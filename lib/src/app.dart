@@ -8,7 +8,9 @@ class App extends StatelessWidget{
       debugShowCheckedModeBanner: false,
       title: "Food Delivery App",
       theme: ThemeData(
-        primaryColor: Colors.blueAccent
+        primaryColor: Color(0xff6BC0FC),
+        fontFamily: 'Avenir',
+
       ),
       home: MainScreen(), //edit this to change the home Screen
     );
