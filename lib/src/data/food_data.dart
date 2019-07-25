@@ -390,7 +390,7 @@ Food(
   ),
   Food(
     id: "47",
-    name: "Colgate Premier Toothbrush 1 Pack",
+    name: "Colgate Premier Toothbrush (1-Pack)",
     imagePath: "assets/images/toothbrush.jpg",
     category: "1",
     price: 1.59,
@@ -432,7 +432,7 @@ Food(
   ),
   Food(
     id: "43",
-    name: "Energizer AA Batteries (2 Count)",
+    name: "Energizer AA Batteries (2-Pack)",
     imagePath: "assets/images/aa.png",
     category: "1",
     price: 1.99,
@@ -442,7 +442,7 @@ Food(
   ),
   Food(
     id: "44",
-    name: "Energizer AAA Batteries (2 Count)",
+    name: "Energizer AAA Batteries (2-Pack)",
     imagePath: "assets/images/aaa.png",
     category: "1",
     price: 1.99,
@@ -462,7 +462,7 @@ Food(
   ),
   Food(
     id: "38",
-    name: "Always Ultra Thin (Size 1, 3 pack)",
+    name: "Always Ultra Thin (Size 1, 3-pack)",
     imagePath: "assets/images/pads.png",
     category: "1",
     price: 1.99,
@@ -472,7 +472,7 @@ Food(
   ),
   Food(
     id: "39",
-    name: "U Click Compact Tampons (3 pack)",
+    name: "U Click Compact Tampons (3-pack)",
     imagePath: "assets/images/tampons.png",
     category: "1",
     price: 1.99,

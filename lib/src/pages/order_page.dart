@@ -21,7 +21,7 @@ class OrderPage extends StatefulWidget {
 }
 double ordervalue = 0.00;
 //int quantity = 0;
-double taxvalue = ordervalue*.08;
+double taxvalue = ordervalue*.065;
 double tipvalue = 0.00;
 double smallorder = 0.0;
 double servicefee = .3 + .03*ordervalue;
@@ -142,7 +142,7 @@ var bluecolor = Color(0xff6BC0FC);
   Widget _buildPhoneNumberTextField() {
     return TextField(
       controller: phoneNumberController,
-      keyboardType: TextInputType.number,
+      //keyboardType: TextInputType.number,
       onChanged: (j) =>  phoneNumberController.text = j,
       autocorrect: false,
       autofocus:true,

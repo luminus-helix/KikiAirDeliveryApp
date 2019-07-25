@@ -435,7 +435,11 @@ Row(
             height: 50,
             decoration: BoxDecoration( borderRadius: BorderRadius.circular(20)),
             child: 
-            GestureDetector(
+           // GestureDetector(
+              InkWell(
+              splashColor: Color(0xff81DAF5),
+              borderRadius: BorderRadius.circular(25),
+
              // splashColor: Colors.grey,
               //borderRadius: BorderRadius.circular(1000),// circular(25),
               //backgroundColor: Color(0xff81DAF5),
@@ -527,12 +531,13 @@ Row(
               child: 
               Icon(
                 
-                //splashColor: Color(0xff81DAF5),
+               // splashColor: Color(0xff81DAF5),
                 //onPressed: (){}, 
                 Icons.add,
                 color: Colors.black, 
                 size:35,)
               ),
+            //  ),
             ),
             
           ],

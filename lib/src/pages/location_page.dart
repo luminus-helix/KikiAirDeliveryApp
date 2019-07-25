@@ -5,6 +5,8 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:food_app_flutter_zone/src/pages/order_page.dart';
+import 'package:food_app_flutter_zone/src/app.dart';
+
 import 'package:location/location.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:food_app_flutter_zone/src/widgets/bought_foods.dart';
@@ -55,8 +57,8 @@ class _LocationPageState extends State<LocationPage>{
   Completer<GoogleMapController> _controller = Completer();
 
   static final CameraPosition _initialCamera = CameraPosition(
-    target: LatLng(41.3083, -72.9279),
-    zoom: 12,
+    target: LatLng(41.3415080, -72.9450442),
+    zoom: 14.5,
   );
 
   CameraPosition _currentCameraPosition;
@@ -70,7 +72,7 @@ class _LocationPageState extends State<LocationPage>{
     super.initState();
 
     initPlatformState();
-    droneRange.add(Circle(circleId: CircleId('1'),  center: LatLng(41.3083, -72.9279) , radius: 2500, fillColor: Colors.blue.withOpacity(0.2), strokeWidth: 0));
+    droneRange.add(Circle(circleId: CircleId('1'),  center: LatLng(41.3415080, -72.9450442) , radius: 1200, fillColor: Colors.blue.withOpacity(0.2), strokeWidth: 0));
     /*for (var i =1; i<currentOrder.length;i++){
                 ordersummary = ordersummary + " " + currentOrder[i].quantity.toString() + "x " + currentOrder[i].name;
     }*/
@@ -226,7 +228,7 @@ class _LocationPageState extends State<LocationPage>{
              
               
            
-          title: Text("Choose Location in Circle", style: TextStyle(fontSize: 27, fontWeight: FontWeight.bold )),
+          title: Text("Choose Location in Circle", style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal )),
         
         ),
         body: Stack(

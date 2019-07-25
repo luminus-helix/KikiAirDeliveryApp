@@ -123,8 +123,8 @@ class _MainScreenState extends State<MainScreen> {
           alignment: Alignment(0,-0.655), // (0,-0.565),
           width: MediaQuery.of(context).size.width*0.8,
           child: Text(
-            r"Free Delivery on Orders Less than $5!",
-            textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontSize: 35, fontWeight: FontWeight.bold),
+            r"Free Delivery on Orders More than $5!",
+            textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontSize: 32, fontWeight: FontWeight.bold),
           )
         ), 
         /*Container(
