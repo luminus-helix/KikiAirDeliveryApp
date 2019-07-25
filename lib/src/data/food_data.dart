@@ -151,7 +151,7 @@ dynamic foods = [
     name: "Jacks Links Peppered Beef Jerky",
     imagePath: "assets/images/peppered.png",
     category: "1",
-    price: 1.99,
+    price: 8.89,
     discount: 33.5,
     ratings: 99.0,
     quantity: 1,
