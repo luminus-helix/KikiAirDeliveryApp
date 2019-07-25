@@ -121,7 +121,7 @@ dynamic foods = [
     imagePath: "assets/images/cheetos.jpg",
     category: "2",
     price: 2.46,
-    discount: 33.5,
+    discount: 33.5, 
     ratings: 99.0,
     quantity: 1,
   ),
